@@ -27,12 +27,18 @@ export default {
     {
       name: 'image_mobile',
       type: 'cloudinary.asset',
-      title: 'Desktop Image',
+      title: 'Mobile Image',
     },
     {
       name: 'description',
       type: 'text',
       title: 'Description',
+    },
+    {
+      name: 'project',
+      title: 'Project',
+      type: 'reference',
+      to: [{type: 'project'}],
     },
   ],
 }
