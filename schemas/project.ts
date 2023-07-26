@@ -37,6 +37,17 @@ export default defineType({
       title: 'Thumbnail',
     }),
     defineField({
+      name: 'thumb_vimeo_id',
+      type: 'string',
+      title: 'Thumbnail Vimeo ID',
+    }),
+    defineField({
+      name: 'thumb_vimeo_src',
+      type: 'string',
+      title: 'Thumbnail Vimeo MP4 URL',
+      description: 'Use a 720p MP4 file from Vimeo’s "Video file links"',
+    }),
+    defineField({
       name: 'description',
       type: 'array',
       title: 'Description',
