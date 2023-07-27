@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {makeCloudinaryThumb} from '../lib/util'
 
 interface FieldParams {
   parent: any
@@ -130,7 +131,7 @@ export default defineType({
               return {
                 title: `${titleLeft} + ${titleRight}`,
                 subtitle: 'Item Pair',
-                imageUrl: imageUrl.replace('/upload/', '/upload/c_fill,h_200,w_200/'),
+                imageUrl: makeCloudinaryThumb(imageUrl),
               }
             },
           },
