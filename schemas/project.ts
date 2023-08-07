@@ -1,5 +1,5 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
-import {makeCloudinaryThumb} from '../lib/util'
+import { defineArrayMember, defineField, defineType } from 'sanity'
+import { makeCloudinaryThumb } from '../lib/util'
 
 interface FieldParams {
   parent: any
@@ -10,6 +10,21 @@ export default defineType({
   name: 'project',
   type: 'document',
   title: 'Project',
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'client',
+      kind: 'kind',
+      imageUrl: 'image.secure_url',
+    },
+    prepare({ title, subtitle, imageUrl }: any) {
+      return {
+        title,
+        subtitle,
+        imageUrl: makeCloudinaryThumb(imageUrl),
+      }
+    },
+  },
   fields: [
     defineField({
       name: 'name',
@@ -33,11 +48,17 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'short_name',
+      type: 'string',
+      title: 'Short Name',
+      description: 'This is used under thumbnails in grid views',
+    }),
+    defineField({
       name: 'client',
       type: 'string',
-      title: 'Client',
+      title: 'Subtitle',
+      description: 'This is used under thumbnails in grid views',
     }),
-
     defineField({
       name: 'image',
       type: 'cloudinary.asset',
@@ -47,10 +68,11 @@ export default defineType({
       name: 'kind',
       type: 'string',
       title: 'Thumbnail type',
+      initialValue: 'image',
       options: {
         list: [
-          {title: 'Image', value: 'image'},
-          {title: 'Video BG', value: 'video-bg'},
+          { title: 'Image', value: 'image' },
+          { title: 'Video BG', value: 'video-bg' },
         ],
         layout: 'radio',
         direction: 'horizontal',
@@ -61,14 +83,14 @@ export default defineType({
       type: 'string',
       title: 'Thumbnail video: 720p Vimeo MP4 URL',
       description: 'Use a 720p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({parent, value}: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent, value }: FieldParams) => parent.kind !== 'video-bg',
     }),
     defineField({
       name: 'thumb_vimeo_src_hd',
       type: 'string',
       title: 'Thumbnail video: 1080p Vimeo MP4 URL',
       description: 'Use a 1080p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({parent, value}: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent, value }: FieldParams) => parent.kind !== 'video-bg',
     }),
     defineField({
       name: 'description',
@@ -77,13 +99,13 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          styles: [{ title: 'Normal', value: 'normal' }],
           lists: [],
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-              {title: 'Code', value: 'code'},
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Code', value: 'code' },
             ],
           },
         }),
@@ -98,9 +120,15 @@ export default defineType({
           name: 'credit',
           type: 'object',
           title: 'Credit',
+          preview: {
+            select: {
+              title: 'name',
+              subtitle: 'credit'
+            },
+          },
           fields: [
-            {name: 'name', type: 'string', title: 'Title'},
-            {name: 'credit', type: 'string', title: 'Credit'},
+            { name: 'name', type: 'string', title: 'Title' },
+            { name: 'credit', type: 'string', title: 'Credit' },
           ],
         }),
       ],
@@ -115,7 +143,7 @@ export default defineType({
           type: 'reference',
           title: 'Single Item',
           weak: true,
-          to: [{type: 'project_media'}],
+          to: [{ type: 'project_media' }],
         }),
         defineArrayMember({
           name: 'item_pair',
@@ -127,7 +155,7 @@ export default defineType({
               titleRight: 'right.name',
               imageUrl: 'left.image.secure_url',
             },
-            prepare({titleLeft, titleRight, imageUrl}: any) {
+            prepare({ titleLeft, titleRight, imageUrl }: any) {
               return {
                 title: `${titleLeft} + ${titleRight}`,
                 subtitle: 'Item Pair',
@@ -150,7 +178,7 @@ export default defineType({
               name: 'right',
               weak: true,
               type: 'reference',
-              to: [{type: 'project_media'}],
+              to: [{ type: 'project_media' }],
             }),
           ],
         }),

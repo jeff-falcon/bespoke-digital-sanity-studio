@@ -1,8 +1,24 @@
+import { makeCloudinaryThumb } from "../lib/util"
+
 // schemas/project.ts
 export default {
   name: 'hero',
   type: 'document',
   title: 'Hero',
+  preview: {
+    select: {
+      title: 'name',
+      kind: 'kind',
+      imageUrl: 'image_desktop.secure_url',
+    },
+    prepare({ title, kind, imageUrl }: any) {
+      return {
+        title,
+        subtitle: kind,
+        imageUrl: makeCloudinaryThumb(imageUrl),
+      }
+    },
+  },
   fields: [
     {
       name: 'name',
@@ -38,7 +54,7 @@ export default {
       name: 'project',
       title: 'Project',
       type: 'reference',
-      to: [{type: 'project'}],
+      to: [{ type: 'project' }],
     },
   ],
 }
