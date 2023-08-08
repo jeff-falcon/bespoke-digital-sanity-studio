@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@sanity/icons':
     specifier: ^2.1.0
@@ -46,9 +42,15 @@ devDependencies:
   eslint:
     specifier: ^8.6.0
     version: 8.6.0
+  luxon:
+    specifier: ^3.3.0
+    version: 3.3.0
   prettier:
     specifier: ^2.8.8
     version: 2.8.8
+  timezones-list:
+    specifier: ^3.0.2
+    version: 3.0.2
   typescript:
     specifier: ^4.9.5
     version: 4.9.5
@@ -4845,6 +4847,11 @@ packages:
     dependencies:
       yallist: 4.0.0
 
+  /luxon@3.3.0:
+    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
+    engines: {node: '>=12'}
+    dev: true
+
   /make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -6217,6 +6224,10 @@ packages:
       readable-stream: 3.6.2
     dev: false
 
+  /timezones-list@3.0.2:
+    resolution: {integrity: sha512-I698hm6Jp/xxkwyTSOr39pZkYKETL8LDJeSIhjxXBfPUAHM5oZNuQ4o9UK3PSkDBOkjATecSOBb3pR1IkIBUsg==}
+    dev: true
+
   /tiny-invariant@1.0.6:
     resolution: {integrity: sha512-FOyLWWVjG+aC0UqG76V53yAWdXfH8bO6FNmyZOuUrzDzK8DI3/JRY25UD7+g49JWM1LXwymsKERB+DzI0dTEQA==}
     dev: false
@@ -6712,3 +6723,7 @@ packages:
       compress-commons: 4.1.1
       readable-stream: 3.6.2
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

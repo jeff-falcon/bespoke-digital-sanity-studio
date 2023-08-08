@@ -3,5 +3,6 @@ import Hero from './hero'
 import Page from './page'
 import ProjectGrid from './project_grid'
 import ProjectMedia from './project_media'
+import Config from './config'
 
-export const schemaTypes = [Project, Hero, Page, ProjectGrid, ProjectMedia]
+export const schemaTypes = [Project, Hero, Page, ProjectGrid, ProjectMedia, Config]
