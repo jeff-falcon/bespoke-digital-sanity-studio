@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 // schemas/project.ts
 export default defineType({
@@ -36,7 +36,7 @@ export default defineType({
       name: 'hero',
       title: 'Hero',
       type: 'reference',
-      to: [{type: 'hero'}],
+      to: [{ type: 'hero' }],
     }),
     defineField({
       name: 'components',
@@ -47,7 +47,17 @@ export default defineType({
           name: 'projects',
           title: 'Project Grid',
           type: 'reference',
-          to: [{type: 'project_grid'}],
+          to: [
+            { type: 'project_grid' },
+          ],
+        }),
+        defineArrayMember({
+          name: 'logo_grid_ref',
+          title: 'Logo Grid',
+          type: 'reference',
+          to: [
+            { type: 'logo_grid' },
+          ],
         }),
       ],
     }),
