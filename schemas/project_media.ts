@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
-import {makeCloudinaryThumb} from '../lib/util'
+import { defineField, defineType } from 'sanity'
+import { makeCloudinaryThumb } from '../lib/util'
 
 interface FieldParams {
   parent: any
@@ -16,7 +16,7 @@ export default defineType({
       kind: 'kind',
       imageUrl: 'image.secure_url',
     },
-    prepare({title, kind, imageUrl}: any) {
+    prepare({ title, kind, imageUrl }: any) {
       return {
         title,
         subtitle: kind,
@@ -40,9 +40,9 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Image', value: 'image'},
-          {title: 'Video BG', value: 'video-bg'},
-          {title: 'Video Player', value: 'video-player'},
+          { title: 'Image', value: 'image' },
+          { title: 'Video BG', value: 'video-bg' },
+          { title: 'Video Player', value: 'video-player' },
         ],
         layout: 'radio',
         direction: 'horizontal',
@@ -53,21 +53,21 @@ export default defineType({
       type: 'string',
       title: 'Vimeo ID',
       description: 'Embeds a Video player with controls',
-      hidden: ({parent}: FieldParams) => parent.kind !== 'video-player',
+      hidden: ({ parent }: FieldParams) => parent.kind !== 'video-player',
     }),
     defineField({
       name: 'thumb_vimeo_src',
       type: 'string',
       title: '720p Vimeo MP4 URL',
       description: 'Use a 720p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({parent}: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent }: FieldParams) => parent.kind !== 'video-bg',
     }),
     defineField({
       name: 'thumb_vimeo_src_hd',
       type: 'string',
       title: '1080p Vimeo MP4 URL',
       description: 'Use a 1080p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({parent}: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent }: FieldParams) => parent.kind !== 'video-bg',
     }),
   ],
 })
