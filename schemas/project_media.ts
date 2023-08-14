@@ -49,10 +49,10 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'vimeoId',
+      name: 'vimeo_player_src',
       type: 'string',
-      title: 'Vimeo ID',
-      description: 'Embeds a Video player with controls',
+      title: 'Vimeo HLS (.m3u8) URL',
+      description: 'Embeds a video player with controls. Use the HLS (.m3u8) url from Vimeo’s "Video file links"',
       hidden: ({ parent }: FieldParams) => parent.kind !== 'video-player',
     }),
     defineField({

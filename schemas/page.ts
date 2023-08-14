@@ -52,6 +52,14 @@ export default defineType({
           ],
         }),
         defineArrayMember({
+          name: 'project_media_ref',
+          title: 'Single Project Media',
+          type: 'reference',
+          to: [
+            { type: 'project_media' },
+          ],
+        }),
+        defineArrayMember({
           name: 'logo_grid_ref',
           title: 'Logo Grid',
           type: 'reference',
