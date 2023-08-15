@@ -7,6 +7,7 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
+      subtitle: 'title',
     }
   },
   fields: [
@@ -14,6 +15,11 @@ export default defineType({
       name: 'name',
       type: 'string',
       title: 'Name',
+    }),
+    defineField({
+      name: 'title',
+      type: 'string',
+      title: 'Title',
     }),
     defineField({
       name: 'body',
@@ -34,6 +40,28 @@ export default defineType({
               name: 'description',
               type: 'text',
               title: 'Description',
+            }),
+            defineField({
+              name: 'body',
+              type: 'array',
+              title: 'Body',
+              of: [
+                defineArrayMember({
+                  type: 'block',
+                  styles: [{ title: 'Normal', value: 'normal' }],
+                  marks: {
+                    decorators: [
+                      { title: 'Strong', value: 'strong' },
+                      { title: 'Emphasis', value: 'em' },
+                      { title: 'Code', value: 'code' },
+                    ],
+                  },
+                  lists: [
+                    { title: 'Bullet', value: 'bullet' },
+                    { title: 'Numbered', value: 'number' }
+                  ] // yes please, both bullet and numbered
+                })
+              ],
             }),
           ]
         }),

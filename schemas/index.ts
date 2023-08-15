@@ -7,5 +7,6 @@ import Config from './config'
 import LogoGrid from './logo_grid'
 import TextOnly from './text_only'
 import ColumnedText from './columned_text'
+import ClientList from './client_list'
 
-export const schemaTypes = [Project, Hero, Page, ProjectGrid, ProjectMedia, Config, LogoGrid, TextOnly, ColumnedText]
+export const schemaTypes = [Project, Hero, Page, ProjectGrid, ProjectMedia, Config, LogoGrid, TextOnly, ColumnedText, ClientList]

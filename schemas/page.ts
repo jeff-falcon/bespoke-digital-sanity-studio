@@ -83,6 +83,14 @@ export default defineType({
             { type: 'columned_text' },
           ],
         }),
+        defineArrayMember({
+          name: 'client_list_ref',
+          title: 'Client List',
+          type: 'reference',
+          to: [
+            { type: 'client_list' },
+          ],
+        }),
       ],
     }),
   ],
