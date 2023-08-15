@@ -1,10 +1,11 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
-
+import { DocumentsIcon } from '@sanity/icons'
 // schemas/project.ts
 export default defineType({
   name: 'page',
   type: 'document',
   title: 'Page',
+  icon: DocumentsIcon,
   fields: [
     defineField({
       name: 'name',
@@ -91,6 +92,14 @@ export default defineType({
             { type: 'client_list' },
           ],
         }),
+        defineArrayMember({
+          name: 'form_ref',
+          title: 'Form',
+          type: 'reference',
+          to: [
+            { type: 'form' },
+          ],
+        }),
       ],
     }),
     defineField({
@@ -107,6 +116,12 @@ export default defineType({
         direction: 'vertical',
         layout: 'radio',
       }
+    }),
+    defineField({
+      name: 'footer_contact',
+      type: 'boolean',
+      title: 'Show Contact in Footer',
+      initialValue: true,
     }),
   ],
 })

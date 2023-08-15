@@ -1,12 +1,15 @@
+import { EnvelopeIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'text_only',
+  name: 'form',
   type: 'document',
-  title: 'Text Block',
+  title: 'Form',
+  icon: EnvelopeIcon,
   preview: {
     select: {
       title: 'name',
+      subtitle: 'title',
     }
   },
   fields: [
@@ -27,13 +30,7 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'block',
-          styles: [
-            { title: 'Heading 2', value: 'h2' },
-            { title: 'Heading 3', value: 'h3' },
-            { title: 'Heading 4', value: 'h4' },
-            { title: 'Normal', value: 'normal' },
-          ],
-          lists: [],
+          styles: [{ title: 'Normal', value: 'normal' }],
           marks: {
             decorators: [
               { title: 'Strong', value: 'strong' },
@@ -41,8 +38,27 @@ export default defineType({
               { title: 'Code', value: 'code' },
             ],
           },
-        }),
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' }
+          ] // yes please, both bullet and numbered
+        })
       ],
+    }),
+    defineField({
+      name: 'form',
+      type: 'string',
+      title: 'Form',
+      initialValue: 'contact',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          { title: 'General Contact', value: 'contact' },
+          { title: 'Job Submission', value: 'job' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
     }),
   ]
 })

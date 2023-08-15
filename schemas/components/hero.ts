@@ -1,20 +1,23 @@
 import { defineField, defineType } from 'sanity'
-import { makeCloudinaryThumb } from '../lib/util'
+import { makeCloudinaryThumb } from "../../lib/util"
+import { RocketIcon } from '@sanity/icons'
 
 interface FieldParams {
   parent: any
   value: any
 }
 
+// schemas/project.ts
 export default defineType({
-  name: 'project_media',
+  name: 'hero',
   type: 'document',
-  title: 'Project Media',
+  title: 'Hero',
+  icon: RocketIcon,
   preview: {
     select: {
       title: 'name',
       kind: 'kind',
-      imageUrl: 'image.secure_url',
+      imageUrl: 'image_desktop.secure_url',
     },
     prepare({ title, kind, imageUrl }: any) {
       return {
@@ -28,46 +31,56 @@ export default defineType({
     defineField({
       name: 'name',
       type: 'string',
-      title: 'Name',
+      title: 'Title',
     }),
     defineField({
-      name: 'image',
+      name: 'subtitle',
+      type: 'string',
+      title: 'Subtitle',
+    }),
+    defineField({
+      name: 'image_desktop',
       type: 'cloudinary.asset',
-      title: 'Image (or video placeholder)',
+      title: 'Desktop Image',
+    }),
+    defineField({
+      name: 'image_mobile',
+      type: 'cloudinary.asset',
+      title: 'Mobile Image',
     }),
     defineField({
       name: 'kind',
       type: 'string',
+      title: 'Thumbnail type',
+      initialValue: 'image',
       options: {
         list: [
           { title: 'Image', value: 'image' },
           { title: 'Video BG', value: 'video-bg' },
-          { title: 'Video Player', value: 'video-player' },
         ],
         layout: 'radio',
         direction: 'horizontal',
       },
     }),
     defineField({
-      name: 'vimeo_player_src',
-      type: 'string',
-      title: 'Vimeo HLS (.m3u8) URL',
-      description: 'Embeds a video player with controls. Use the HLS (.m3u8) url from Vimeo’s "Video file links"',
-      hidden: ({ parent }: FieldParams) => parent.kind !== 'video-player',
-    }),
-    defineField({
       name: 'thumb_vimeo_src',
       type: 'string',
-      title: '720p Vimeo MP4 URL',
+      title: 'Thumbnail video: 720p Vimeo MP4 URL',
       description: 'Use a 720p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({ parent }: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent, value }: FieldParams) => parent.kind !== 'video-bg',
     }),
     defineField({
       name: 'thumb_vimeo_src_hd',
       type: 'string',
-      title: '1080p Vimeo MP4 URL',
+      title: 'Thumbnail video: 1080p Vimeo MP4 URL',
       description: 'Use a 1080p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({ parent }: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent, value }: FieldParams) => parent.kind !== 'video-bg',
     }),
+    {
+      name: 'project',
+      title: 'Project',
+      type: 'reference',
+      to: [{ type: 'project' }],
+    },
   ],
 })

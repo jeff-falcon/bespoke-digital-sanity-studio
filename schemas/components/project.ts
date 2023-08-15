@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
-import { makeCloudinaryThumb } from '../lib/util'
+import { makeCloudinaryThumb } from '../../lib/util'
+import { PresentationIcon } from '@sanity/icons'
 
 interface FieldParams {
   parent: any
@@ -10,6 +11,7 @@ export default defineType({
   name: 'project',
   type: 'document',
   title: 'Project',
+  icon: PresentationIcon,
   preview: {
     select: {
       title: 'name',

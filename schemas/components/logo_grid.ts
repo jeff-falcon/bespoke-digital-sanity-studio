@@ -1,9 +1,11 @@
+import { BlockElementIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'logo_grid',
   type: 'document',
   title: 'Logo Grid',
+  icon: BlockElementIcon,
   preview: {
     select: {
       title: 'name',

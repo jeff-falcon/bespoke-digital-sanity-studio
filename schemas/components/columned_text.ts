@@ -1,9 +1,11 @@
+import { SplitVerticalIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'columned_text',
   type: 'document',
   title: 'Columned Text',
+  icon: SplitVerticalIcon,
   preview: {
     select: {
       title: 'name',

@@ -1,12 +1,25 @@
-import Project from './project'
-import Hero from './hero'
-import Page from './page'
-import ProjectGrid from './project_grid'
-import ProjectMedia from './project_media'
-import Config from './config'
-import LogoGrid from './logo_grid'
-import TextOnly from './text_only'
-import ColumnedText from './columned_text'
-import ClientList from './client_list'
+import Project from './components/project'
+import Hero from './components/hero'
+import Page from './components/page'
+import ProjectGrid from './components/project_grid'
+import ProjectMedia from './components/project_media'
+import Config from './components/config'
+import LogoGrid from './components/logo_grid'
+import TextOnly from './components/text_only'
+import ColumnedText from './components/columned_text'
+import ClientList from './components/client_list'
+import Form from './components/form'
 
-export const schemaTypes = [Project, Hero, Page, ProjectGrid, ProjectMedia, Config, LogoGrid, TextOnly, ColumnedText, ClientList]
+export const schemaTypes = [
+  Config,
+  Page,
+  ClientList,
+  ColumnedText,
+  Form,
+  LogoGrid,
+  Hero,
+  Project,
+  ProjectGrid,
+  ProjectMedia,
+  TextOnly,
+];

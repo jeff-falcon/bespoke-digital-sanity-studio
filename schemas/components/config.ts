@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 import timezones, { TimeZone } from 'timezones-list';
+import { CogIcon } from '@sanity/icons';
 
 const timezoneOptions = timezones.map((tz: TimeZone) => { return { title: tz.label, value: tz.tzCode } })
 timezoneOptions.sort((a, b) => a.title.localeCompare(b.title))
@@ -9,6 +10,7 @@ export default defineType({
   name: 'config',
   type: 'document',
   title: 'Config',
+  icon: CogIcon,
   fields: [
     defineField({
       name: 'name',

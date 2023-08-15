@@ -1,3 +1,4 @@
+import { ThLargeIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 // schemas/project.ts
@@ -5,6 +6,7 @@ export default defineType({
   name: 'project_grid',
   type: 'document',
   title: 'Project Grid',
+  icon: ThLargeIcon,
   preview: {
     select: {
       title: 'name',

@@ -1,9 +1,11 @@
+import { UsersIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'client_list',
   type: 'document',
   title: 'Client List',
+  icon: UsersIcon,
   preview: {
     select: {
       title: 'name',
