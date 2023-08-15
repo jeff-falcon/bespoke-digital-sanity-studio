@@ -93,5 +93,20 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'bg_color',
+      type: 'string',
+      title: 'Background Color',
+      initialValue: 'default',
+      options: {
+        list: [
+          { title: 'Default', value: 'default' },
+          { title: 'Rust', value: 'rust' },
+          { title: 'Olive', value: 'olive' },
+        ],
+        direction: 'vertical',
+        layout: 'radio',
+      }
+    }),
   ],
 })
