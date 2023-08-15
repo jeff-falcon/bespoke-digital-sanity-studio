@@ -67,6 +67,22 @@ export default defineType({
             { type: 'logo_grid' },
           ],
         }),
+        defineArrayMember({
+          name: 'text_only_ref',
+          title: 'Text Block',
+          type: 'reference',
+          to: [
+            { type: 'text_only' },
+          ],
+        }),
+        defineArrayMember({
+          name: 'columned_text_ref',
+          title: 'Columned Text',
+          type: 'reference',
+          to: [
+            { type: 'columned_text' },
+          ],
+        }),
       ],
     }),
   ],
