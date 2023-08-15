@@ -22,9 +22,16 @@ export default defineType({
       title: 'Title',
     }),
     defineField({
+      name: 'bordered_title',
+      type: 'boolean',
+      title: 'Border under title',
+      hidden: ({ parent }) => parent.title == '',
+    }),
+    defineField({
       name: 'body',
       type: 'array',
       title: 'Body',
+      validation: Rule => Rule.required().min(2).max(4),
       of: [
         defineArrayMember({
           type: 'object',
@@ -35,11 +42,6 @@ export default defineType({
               name: 'title',
               type: 'string',
               title: 'Title',
-            }),
-            defineField({
-              name: 'description',
-              type: 'text',
-              title: 'Description',
             }),
             defineField({
               name: 'body',
@@ -66,7 +68,6 @@ export default defineType({
           ]
         }),
       ],
-      validation: Rule => Rule.required().min(2).max(4)
     }),
   ]
 })
