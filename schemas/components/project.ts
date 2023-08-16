@@ -38,7 +38,7 @@ export default defineType({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
-      description: 'This is used to generate the URL for this project',
+      description: 'Used to generate the URL for this project. Make sure it’s unique!',
       options: {
         source: 'name',
         slugify: (input: string) =>
@@ -54,13 +54,13 @@ export default defineType({
       name: 'short_name',
       type: 'string',
       title: 'Short Name',
-      description: 'This is used under thumbnails in grid views',
+      description: 'Used under thumbnails in grid views',
     }),
     defineField({
       name: 'client',
       type: 'string',
       title: 'Subtitle',
-      description: 'This is used under thumbnails in grid views',
+      description: 'Used under thumbnails in grid views',
     }),
     defineField({
       name: 'image',
@@ -96,9 +96,10 @@ export default defineType({
       hidden: ({ parent, value }: FieldParams) => parent.kind !== 'video-bg',
     }),
     defineField({
-      name: 'description',
+      name: 'description_intro',
       type: 'array',
-      title: 'Description',
+      title: 'Intro Description',
+      description: 'The first block of copy on the project page. Keep it as one paragraph and 1-2 sentences.',
       of: [
         defineArrayMember({
           type: 'block',
@@ -108,7 +109,25 @@ export default defineType({
             decorators: [
               { title: 'Strong', value: 'strong' },
               { title: 'Emphasis', value: 'em' },
-              { title: 'Code', value: 'code' },
+            ],
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'description',
+      type: 'array',
+      title: 'Additional description',
+      description: 'Appears below the intro block.',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
             ],
           },
         }),
