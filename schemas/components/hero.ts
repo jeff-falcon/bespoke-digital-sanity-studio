@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 import { makeCloudinaryThumb } from "../../lib/util"
 import { RocketIcon } from '@sanity/icons'
+import React from 'react'
 
 interface FieldParams {
   parent: any
@@ -23,7 +24,7 @@ export default defineType({
       return {
         title,
         subtitle: kind,
-        imageUrl: makeCloudinaryThumb(imageUrl),
+        media: React.createElement('img', { src: makeCloudinaryThumb(imageUrl) })
       }
     },
   },

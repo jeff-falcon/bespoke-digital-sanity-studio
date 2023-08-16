@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 import { makeCloudinaryThumb } from '../../lib/util'
 import { PresentationIcon } from '@sanity/icons'
+import React from 'react'
 
 interface FieldParams {
   parent: any
@@ -23,7 +24,7 @@ export default defineType({
       return {
         title,
         subtitle,
-        imageUrl: makeCloudinaryThumb(imageUrl),
+        media: React.createElement('img', { src: makeCloudinaryThumb(imageUrl) })
       }
     },
   },
@@ -150,7 +151,7 @@ export default defineType({
         defineArrayMember({
           name: 'item_pair',
           type: 'object',
-          title: 'Item Pair',
+          title: 'Image Pair',
           preview: {
             select: {
               titleLeft: 'left.name',
@@ -160,8 +161,8 @@ export default defineType({
             prepare({ titleLeft, titleRight, imageUrl }: any) {
               return {
                 title: `${titleLeft} + ${titleRight}`,
-                subtitle: 'Item Pair',
-                imageUrl: makeCloudinaryThumb(imageUrl),
+                subtitle: 'Image Pair',
+                media: React.createElement('img', { src: makeCloudinaryThumb(imageUrl) })
               }
             },
           },

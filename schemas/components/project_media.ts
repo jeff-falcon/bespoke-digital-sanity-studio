@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity'
 import { makeCloudinaryThumb } from '../../lib/util'
 import { ImageIcon } from '@sanity/icons'
+import React from 'react'
 
 interface FieldParams {
   parent: any
@@ -17,12 +18,13 @@ export default defineType({
       title: 'name',
       kind: 'kind',
       imageUrl: 'image.secure_url',
+      derivedUrl: 'image.derived.0.secure_url',
     },
-    prepare({ title, kind, imageUrl }: any) {
+    prepare({ title, kind, imageUrl, derivedUrl }: any) {
       return {
         title,
         subtitle: kind,
-        imageUrl: makeCloudinaryThumb(imageUrl),
+        media: React.createElement('img', { src: makeCloudinaryThumb(derivedUrl || imageUrl) })
       }
     },
   },
@@ -36,6 +38,11 @@ export default defineType({
       name: 'image',
       type: 'cloudinary.asset',
       title: 'Image (or video placeholder)',
+    }),
+    defineField({
+      name: 'image_mobile',
+      type: 'cloudinary.asset',
+      title: 'Mobile crop (optional)',
     }),
     defineField({
       name: 'kind',
@@ -53,8 +60,8 @@ export default defineType({
     defineField({
       name: 'vimeo_player_src',
       type: 'string',
-      title: 'Vimeo HLS (.m3u8) URL',
-      description: 'Embeds a video player with controls. Use the HLS (.m3u8) url from Vimeo’s "Video file links"',
+      title: '1080p Vimeo MP4 URL',
+      description: 'Embeds a video player with controls. Use the 1080p MP4 url from Vimeo’s "Video file links"',
       hidden: ({ parent }: FieldParams) => parent.kind !== 'video-player',
     }),
     defineField({
