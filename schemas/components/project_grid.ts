@@ -38,6 +38,23 @@ export default defineType({
       description: 'If checked, the first project will be featured larger. You should have an odd number of projects in the grid for this to work well.',
     }),
     defineField({
+      name: 'more_link',
+      type: 'object',
+      title: 'More link',
+      fields: [
+        defineField({
+          name: 'text',
+          type: 'string',
+          title: 'Button title',
+        }),
+        defineField({
+          name: 'url',
+          type: 'string',
+          title: 'URL',
+        }),
+      ]
+    }),
+    defineField({
       name: 'projects',
       type: 'array',
       title: 'Projects',
