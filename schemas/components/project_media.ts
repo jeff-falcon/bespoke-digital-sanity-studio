@@ -78,5 +78,13 @@ export default defineType({
       description: 'Use a 1080p MP4 file from Vimeo’s "Video file links"',
       hidden: ({ parent }: FieldParams) => parent.kind !== 'video-bg',
     }),
+    // boolean field for image quality
+    defineField({
+      name: 'use_original_quality',
+      type: 'boolean',
+      title: 'Use original quality',
+      description: 'When enabled the image quality on the largest screen will use the settings from Cloudinary or the original file if you didn’t make any edits. Only use this if you have uploaded a compressed JPEG or you know what you are doing in the Cloudinary editor. JPEGs larger than 800KB are not recommended if you have this enabled.',
+      initialValue: false,
+    }),
   ],
 })
