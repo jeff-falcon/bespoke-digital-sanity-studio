@@ -23,13 +23,26 @@ export default defineType({
       type: 'string',
       title: 'Title',
     }),
-
     defineField({
       name: 'clients',
       type: 'text',
       title: 'Clients',
       description: 'One per line, without extra spaces or line breaks',
     }),
-
+    defineField({
+      name: 'background_color',
+      type: 'string',
+      title: 'Background color',
+      initialValue: 'transparent',
+      options: {
+        list: [
+          { title: 'Transparent', value: 'transparent' },
+          { title: 'Dark', value: 'dark' },
+          { title: 'Darker', value: 'darker' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      }
+    }),
   ]
 })

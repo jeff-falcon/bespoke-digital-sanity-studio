@@ -60,5 +60,20 @@ export default defineType({
         direction: 'horizontal',
       },
     }),
+    defineField({
+      name: 'background_color',
+      type: 'string',
+      title: 'Background color',
+      initialValue: 'transparent',
+      options: {
+        list: [
+          { title: 'Transparent', value: 'transparent' },
+          { title: 'Dark', value: 'dark' },
+          { title: 'Darker', value: 'darker' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      }
+    }),
   ]
 })
