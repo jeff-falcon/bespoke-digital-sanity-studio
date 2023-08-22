@@ -108,6 +108,14 @@ export default defineType({
           ]
         }),
       ]
-    })
+    }),
+    defineField({
+      name: 'border_radius',
+      type: 'number',
+      title: 'Border Radius',
+      description: 'For buttons and form fields',
+      initialValue: 24,
+      validation: Rule => Rule.positive().integer().min(4).max(24),
+    }),
   ],
 })
