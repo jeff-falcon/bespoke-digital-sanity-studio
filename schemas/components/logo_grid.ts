@@ -55,6 +55,20 @@ export default defineType({
         layout: 'radio',
         direction: 'horizontal',
       },
-    })
+    }),
+    defineField({
+      name: 'desktop_max_width',
+      type: 'number',
+      title: 'Max Width for desktop',
+      description: 'Max width of the logo grid on desktop',
+      validation: Rule => Rule.positive().integer().min(720).max(9999999),
+    }),
+    defineField({
+      name: 'mobile_max_width',
+      type: 'number',
+      title: 'Max Width for mobile',
+      description: 'Max width of the logo grid on desktop',
+      validation: Rule => Rule.positive().integer().min(320).max(720),
+    }),
   ]
 })
