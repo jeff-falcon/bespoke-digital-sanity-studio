@@ -17,13 +17,14 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
+      subtitle: 'title',
       kind: 'kind',
       imageUrl: 'image_desktop.secure_url',
     },
-    prepare({ title, kind, imageUrl }: any) {
+    prepare({ title, subtitle, kind, imageUrl }: any) {
       return {
         title,
-        subtitle: kind,
+        subtitle: subtitle ? `${subtitle} | ${kind}` : kind,
         media: React.createElement('img', { src: makeCloudinaryThumb(imageUrl) })
       }
     },
@@ -31,6 +32,11 @@ export default defineType({
   fields: [
     defineField({
       name: 'name',
+      type: 'string',
+      title: 'Name',
+    }),
+    defineField({
+      name: 'title',
       type: 'string',
       title: 'Title',
     }),

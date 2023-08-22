@@ -9,6 +9,7 @@ import TextOnly from './components/text_only'
 import ColumnedText from './components/columned_text'
 import ClientList from './components/client_list'
 import Form from './components/form'
+import MultiHero from './components/multi_hero'
 
 export const schemaTypes = [
   Config,
@@ -18,6 +19,7 @@ export const schemaTypes = [
   Form,
   LogoGrid,
   Hero,
+  MultiHero,
   Project,
   ProjectGrid,
   ProjectMedia,

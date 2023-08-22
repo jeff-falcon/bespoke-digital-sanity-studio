@@ -37,7 +37,7 @@ export default defineType({
       name: 'hero',
       title: 'Hero',
       type: 'reference',
-      to: [{ type: 'hero' }],
+      to: [{ type: 'hero' }, { type: 'multi_hero' }],
     }),
     defineField({
       name: 'components',
