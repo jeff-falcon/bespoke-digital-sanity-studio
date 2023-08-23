@@ -1,11 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { TiersIcon } from '@sanity/icons'
 
-interface FieldParams {
-  parent: any
-  value: any
-}
-
 // schemas/project.ts
 export default defineType({
   name: 'multi_hero',
