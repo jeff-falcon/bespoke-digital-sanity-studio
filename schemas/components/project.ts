@@ -33,6 +33,14 @@ export default defineType({
       name: 'name',
       type: 'string',
       title: 'Name',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'title',
+      type: 'string',
+      title: 'Title',
+      description: 'Appears on the project page and in the browser tab.',
+      validation: (Rule: any) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -40,7 +48,7 @@ export default defineType({
       title: 'Slug',
       description: 'Used to generate the URL for this project. Make sure it’s unique!',
       options: {
-        source: 'name',
+        source: 'title',
         slugify: (input: string) =>
           input
             .toLowerCase()
@@ -49,6 +57,12 @@ export default defineType({
             .replace(/[^a-z0-9_-]/g, '')
             .slice(0, 200),
       },
+    }),
+    defineField({
+      name: 'meta_description',
+      type: 'string',
+      title: 'Meta Description',
+      description: 'Used for SEO and social sharing. 1-2 short sentences.',
     }),
     defineField({
       name: 'short_name',

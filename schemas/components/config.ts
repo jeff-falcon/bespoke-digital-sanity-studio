@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 import timezones, { TimeZone } from 'timezones-list';
-import { CogIcon } from '@sanity/icons';
+import { CogIcon, EarthGlobeIcon } from '@sanity/icons';
+import React from 'react';
 
 const timezoneOptions = timezones.map((tz: TimeZone) => { return { title: tz.label, value: tz.tzCode } })
 timezoneOptions.sort((a, b) => a.title.localeCompare(b.title))
@@ -43,6 +44,14 @@ export default defineType({
                   subtitle: 'url',
                   imageUrl: 'icon.asset.url'
                 },
+                prepare({ title, subtitle, imageUrl }: any) {
+                  const img = React.createElement('img', { src: imageUrl, style: { backgroundColor: 'black' } })
+                  return {
+                    title,
+                    subtitle,
+                    media: img
+                  }
+                }
               },
               fields: [
                 defineField({
@@ -79,6 +88,7 @@ export default defineType({
           name: 'location',
           type: 'object',
           title: 'Location',
+          icon: EarthGlobeIcon,
           fields: [
             defineField({
               name: 'name',

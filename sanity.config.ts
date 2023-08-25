@@ -32,5 +32,26 @@ export default defineConfig({
     types: schemaTypes,
   },
   theme,
+  document: {
+    productionUrl: async (prev, context) => {
+      const domain = isDev ? 'http://localhost:5173' : 'https://bespoke-digital-website.vercel.app'
+      const { getClient, document } = context
+      const client = getClient({ apiVersion: '2023-05-31' })
+      if (document._type === 'page') {
+        const slug = await client.fetch(
+          `*[_type == 'page' && _id == $postId][0].slug.current`,
+          { postId: document._id }
+        )
+        return `${domain}/${slug}`
+      } else if (document._type === 'project') {
+        const slug = await client.fetch(
+          `*[_type == 'project' && _id == $postId][0].slug.current`,
+          { postId: document._id }
+        )
+        return `${domain}/work/${slug}`
+      }
+      return prev
+    },
+  }
 
 })

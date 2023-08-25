@@ -31,7 +31,8 @@ export default defineType({
     defineField({
       name: 'description',
       type: 'text',
-      title: 'Description',
+      title: 'Meta description',
+      description: 'Used for SEO and social sharing. 1-2 short sentences.',
     }),
     defineField({
       name: 'hero',
