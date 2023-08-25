@@ -206,5 +206,21 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'bg_color',
+      type: 'simplerColor',
+      title: 'Background Color',
+      options: {
+        enableAlpha: false,
+        colorList: [
+          { label: 'Dark Gray', value: '#262626' },
+          { label: 'Rust', value: '#6d3434' },
+          { label: 'Olive', value: '#3f4239' },
+          { label: 'Cream', value: '#EFF4E3' },
+          { label: 'Light Goldenrod', value: '#E9F1CF' },
+          { label: 'Custom...', value: 'custom' },
+        ]
+      }
+    }),
   ],
 })

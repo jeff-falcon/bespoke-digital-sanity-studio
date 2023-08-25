@@ -5,6 +5,7 @@ import { schemaTypes } from './schemas'
 import { getStartedPlugin } from './plugins/sanity-plugin-tutorial'
 import { cloudinarySchemaPlugin } from 'sanity-plugin-cloudinary'
 import { BespokeLogo } from './ui/BespokeLogo'
+import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 
 const devOnlyPlugins = [getStartedPlugin()]
 
@@ -25,7 +26,7 @@ export default defineConfig({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID as string,
   dataset: process.env.SANITY_STUDIO_DATASET as string,
 
-  plugins: [deskTool(), visionTool(), cloudinarySchemaPlugin(), ...(isDev ? devOnlyPlugins : [])],
+  plugins: [deskTool(), visionTool(), simplerColorInput(), cloudinarySchemaPlugin(), ...(isDev ? devOnlyPlugins : [])],
 
   schema: {
     types: schemaTypes,
