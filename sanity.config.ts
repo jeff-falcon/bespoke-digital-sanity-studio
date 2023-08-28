@@ -6,6 +6,7 @@ import { getStartedPlugin } from './plugins/sanity-plugin-tutorial'
 import { cloudinarySchemaPlugin } from 'sanity-plugin-cloudinary'
 import { BespokeLogo } from './ui/BespokeLogo'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
+import { taxonomyManager } from 'sanity-plugin-taxonomy-manager'
 
 const devOnlyPlugins = [getStartedPlugin()]
 
@@ -26,7 +27,7 @@ export default defineConfig({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID as string,
   dataset: process.env.SANITY_STUDIO_DATASET as string,
 
-  plugins: [deskTool(), visionTool(), simplerColorInput(), cloudinarySchemaPlugin(), ...(isDev ? devOnlyPlugins : [])],
+  plugins: [deskTool(), visionTool(), simplerColorInput(), taxonomyManager({}), cloudinarySchemaPlugin(), ...(isDev ? devOnlyPlugins : [])],
 
   schema: {
     types: schemaTypes,
@@ -48,7 +49,7 @@ export default defineConfig({
           `*[_type == 'project' && _id == $postId][0].slug.current`,
           { postId: document._id }
         )
-        return `${domain}/work/${slug}`
+        return `${domain}/work/${slug}/`
       }
       return prev
     },

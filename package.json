@@ -25,6 +25,7 @@
     "sanity": "^3.14.3",
     "sanity-plugin-cloudinary": "^1.1.1",
     "sanity-plugin-simpler-color-input": "^1.1.0",
+    "sanity-plugin-taxonomy-manager": "^3.0.1",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {
