@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 import { makeCloudinaryThumb } from '../../lib/util'
 import { PresentationIcon } from '@sanity/icons'
+import { schemeFilter } from 'sanity-plugin-taxonomy-manager'
 import React from 'react'
 
 interface FieldParams {
@@ -57,6 +58,19 @@ export default defineType({
             .replace(/[^a-z0-9_-]/g, '')
             .slice(0, 200),
       },
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [defineArrayMember({
+        type: 'reference',
+        to: { type: 'skosConcept' },
+        options: {
+          filter: () => schemeFilter({ schemeId: '36f4b9' }),
+          disableNew: true,
+        },
+      }),]
     }),
     defineField({
       name: 'meta_description',
