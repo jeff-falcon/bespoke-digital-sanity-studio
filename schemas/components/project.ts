@@ -250,5 +250,32 @@ export default defineType({
         ]
       }
     }),
+    defineField({
+      name: 'show_related_projects',
+      type: 'boolean',
+      title: 'Show Related Projects',
+      description: 'Show a grid of related projects at the bottom of the page.',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'related_projects_bg_color',
+      type: 'simplerColor',
+      title: 'Related Projects Section Background Color',
+      description: 'Show a grid of related projects at the bottom of the page.',
+      options: {
+        enableAlpha: true,
+        colorList: [
+          { label: 'Darken 8%', value: 'rgba(0,0,0,0.08)' },
+          { label: 'Darken 15%', value: 'rgba(0,0,0,0.15)' },
+          { label: 'Darken 30%', value: 'rgba(0,0,0,0.3)' },
+          { label: 'Darken 50%', value: 'rgba(0,0,0,0.5)' },
+          { label: 'Lighten 8%', value: 'rgba(255,255,255,0.08)' },
+          { label: 'Lighten 15%', value: 'rgba(255,255,255,0.15)' },
+          { label: 'Lighten 30%', value: 'rgba(255,255,255,0.3)' },
+          { label: 'Lighten 50%', value: 'rgba(255,255,255,0.5)' },
+          { label: 'Custom...', value: 'custom' },
+        ]
+      }
+    }),
   ],
 })
