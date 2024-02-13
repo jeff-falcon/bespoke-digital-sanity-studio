@@ -10,6 +10,7 @@ import ColumnedText from './components/columned_text'
 import ClientList from './components/client_list'
 import Form from './components/form'
 import MultiHero from './components/multi_hero'
+import TeamGrid from './components/team_grid'
 
 export const schemaTypes = [
   Config,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   ProjectGrid,
   ProjectMedia,
   TextOnly,
-];
+  TeamGrid,
+]

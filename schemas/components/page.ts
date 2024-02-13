@@ -1,5 +1,5 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
-import { DocumentsIcon } from '@sanity/icons'
+import {defineArrayMember, defineField, defineType} from 'sanity'
+import {DocumentsIcon} from '@sanity/icons'
 // schemas/project.ts
 export default defineType({
   name: 'page',
@@ -38,7 +38,7 @@ export default defineType({
       name: 'hero',
       title: 'Hero',
       type: 'reference',
-      to: [{ type: 'hero' }, { type: 'multi_hero' }],
+      to: [{type: 'hero'}, {type: 'multi_hero'}],
     }),
     defineField({
       name: 'components',
@@ -49,57 +49,49 @@ export default defineType({
           name: 'projects',
           title: 'Project Grid',
           type: 'reference',
-          to: [
-            { type: 'project_grid' },
-          ],
+          to: [{type: 'project_grid'}],
         }),
         defineArrayMember({
           name: 'project_media_ref',
           title: 'Single Project Media',
           type: 'reference',
-          to: [
-            { type: 'project_media' },
-          ],
+          to: [{type: 'project_media'}],
         }),
         defineArrayMember({
           name: 'logo_grid_ref',
           title: 'Logo Grid',
           type: 'reference',
-          to: [
-            { type: 'logo_grid' },
-          ],
+          to: [{type: 'logo_grid'}],
         }),
         defineArrayMember({
           name: 'text_only_ref',
           title: 'Text Block',
           type: 'reference',
-          to: [
-            { type: 'text_only' },
-          ],
+          to: [{type: 'text_only'}],
         }),
         defineArrayMember({
           name: 'columned_text_ref',
           title: 'Columned Text',
           type: 'reference',
-          to: [
-            { type: 'columned_text' },
-          ],
+          to: [{type: 'columned_text'}],
         }),
         defineArrayMember({
           name: 'client_list_ref',
           title: 'Client List',
           type: 'reference',
-          to: [
-            { type: 'client_list' },
-          ],
+          to: [{type: 'client_list'}],
+        }),
+        defineArrayMember({
+          name: 'team_grid_ref',
+          title: 'Team Grid',
+          type: 'reference',
+          to: [{type: 'team_grid'}],
         }),
         defineArrayMember({
           name: 'form_ref',
           title: 'Form',
           type: 'reference',
-          to: [
-            { type: 'form' },
-          ],
+          to: [{type: 'form'}],
         }),
       ],
     }),
@@ -125,14 +117,14 @@ export default defineType({
       options: {
         enableAlpha: false,
         colorList: [
-          { label: 'Dark Gray', value: '#262626' },
-          { label: 'Rust', value: '#6d3434' },
-          { label: 'Olive', value: '#3f4239' },
-          { label: 'Cream', value: '#EFF4E3' },
-          { label: 'Light Goldenrod', value: '#E9F1CF' },
-          { label: 'Custom...', value: 'custom' },
-        ]
-      }
+          {label: 'Dark Gray', value: '#262626'},
+          {label: 'Rust', value: '#6d3434'},
+          {label: 'Olive', value: '#3f4239'},
+          {label: 'Cream', value: '#EFF4E3'},
+          {label: 'Light Goldenrod', value: '#E9F1CF'},
+          {label: 'Custom...', value: 'custom'},
+        ],
+      },
     }),
     defineField({
       name: 'footer_contact',
