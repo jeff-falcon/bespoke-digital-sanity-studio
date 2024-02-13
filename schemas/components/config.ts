@@ -1,9 +1,11 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
-import timezones, { TimeZone } from 'timezones-list';
-import { CogIcon, EarthGlobeIcon } from '@sanity/icons';
-import React from 'react';
+import {defineArrayMember, defineField, defineType} from 'sanity'
+import timezones, {TimeZone} from 'timezones-list'
+import {CogIcon, EarthGlobeIcon} from '@sanity/icons'
+import React from 'react'
 
-const timezoneOptions = timezones.map((tz: TimeZone) => { return { title: tz.label, value: tz.tzCode } })
+const timezoneOptions = timezones.map((tz: TimeZone) => {
+  return {title: tz.label, value: tz.tzCode}
+})
 timezoneOptions.sort((a, b) => a.title.localeCompare(b.title))
 
 // schemas/config.ts
@@ -17,6 +19,12 @@ export default defineType({
       name: 'name',
       type: 'string',
       title: 'Name',
+    }),
+    defineField({
+      name: 'main_menu',
+      type: 'array',
+      title: 'Main Menu',
+      of: [{type: 'reference', to: [{type: 'page'}]}],
     }),
     defineField({
       name: 'socials_group',
@@ -42,16 +50,19 @@ export default defineType({
                 select: {
                   title: 'name',
                   subtitle: 'url',
-                  imageUrl: 'icon.asset.url'
+                  imageUrl: 'icon.asset.url',
                 },
-                prepare({ title, subtitle, imageUrl }: any) {
-                  const img = React.createElement('img', { src: imageUrl, style: { backgroundColor: 'black' } })
+                prepare({title, subtitle, imageUrl}: any) {
+                  const img = React.createElement('img', {
+                    src: imageUrl,
+                    style: {backgroundColor: 'black'},
+                  })
                   return {
                     title,
                     subtitle,
-                    media: img
+                    media: img,
                   }
-                }
+                },
               },
               fields: [
                 defineField({
@@ -71,13 +82,13 @@ export default defineType({
                   description: '1:1 aspect ratio, white fills or strokes, transparent background',
                   options: {
                     accept: 'image/svg+xml',
-                  }
+                  },
                 }),
               ],
-            })
-          ]
+            }),
+          ],
         }),
-      ]
+      ],
     }),
     defineField({
       name: 'locations',
@@ -103,7 +114,7 @@ export default defineType({
                 list: timezoneOptions,
                 direction: 'vertical',
                 layout: 'dropdown',
-              }
+              },
             }),
             defineField({
               name: 'address',
@@ -115,9 +126,9 @@ export default defineType({
               type: 'string',
               title: 'Email',
             }),
-          ]
+          ],
         }),
-      ]
+      ],
     }),
     defineField({
       name: 'border_radius',
@@ -125,7 +136,7 @@ export default defineType({
       title: 'Border Radius',
       description: 'For buttons and form fields',
       initialValue: 24,
-      validation: Rule => Rule.positive().integer().min(0).max(24),
+      validation: (Rule) => Rule.positive().integer().min(0).max(24),
     }),
   ],
 })
