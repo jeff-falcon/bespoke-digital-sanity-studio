@@ -1,5 +1,5 @@
-import { ThLargeIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import {ThLargeIcon} from '@sanity/icons'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 // schemas/project.ts
 export default defineType({
@@ -13,7 +13,7 @@ export default defineType({
       subtitle: 'title',
     },
     prepare(value, viewOptions) {
-      const { title, subtitle } = value as { title: string, subtitle: string }
+      const {title, subtitle} = value as {title: string; subtitle: string}
       return {
         title,
         subtitle: subtitle ? `Section title: ${subtitle}` : '',
@@ -35,7 +35,15 @@ export default defineType({
       name: 'feature_first',
       type: 'boolean',
       title: 'Feature first project',
-      description: 'If checked, the first project will be featured larger. You should have an odd number of projects in the grid for this to work well.',
+      description:
+        'If checked, the first project will be featured larger. You should have an odd number of projects in the grid for this to work well.',
+    }),
+    defineField({
+      name: 'feature_all',
+      type: 'boolean',
+      title: 'Full width for all',
+      description:
+        'If checked, all projects will be featured larger. The "Feature first project" setting will be ignored.',
     }),
     defineField({
       name: 'more_link',
@@ -52,7 +60,7 @@ export default defineType({
           type: 'string',
           title: 'URL',
         }),
-      ]
+      ],
     }),
     defineField({
       name: 'projects',
@@ -63,7 +71,7 @@ export default defineType({
           name: 'project',
           title: 'Project',
           type: 'reference',
-          to: [{ type: 'project' }],
+          to: [{type: 'project'}],
         }),
       ],
     }),
