@@ -44,6 +44,13 @@ export default defineType({
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
+      name: 'title_hidden',
+      type: 'boolean',
+      title: 'Hide title',
+      description: 'This hides the title and subtitle on the project detail page.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
