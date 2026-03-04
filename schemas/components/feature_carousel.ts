@@ -57,6 +57,25 @@ export default defineType({
               ],
             }),
             defineField({
+              name: 'body_truncated',
+              type: 'array',
+              title: 'Truncated Body',
+              description: 'For mobile reduce the amount of copy to fit on 4-5 lines',
+              of: [
+                defineArrayMember({
+                  type: 'block',
+                  styles: [{title: 'Normal', value: 'normal'}],
+                  marks: {
+                    decorators: [
+                      {title: 'Strong', value: 'strong'},
+                      {title: 'Emphasis', value: 'em'},
+                      {title: 'Code', value: 'code'},
+                    ],
+                  },
+                }),
+              ],
+            }),
+            defineField({
               name: 'has_button',
               type: 'boolean',
               title: 'Has button',
