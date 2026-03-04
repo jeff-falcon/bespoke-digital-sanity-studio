@@ -1,5 +1,5 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
 import {DocumentsIcon} from '@sanity/icons'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 // schemas/project.ts
 export default defineType({
   name: 'page',
@@ -74,6 +74,12 @@ export default defineType({
           title: 'Columned Text',
           type: 'reference',
           to: [{type: 'columned_text'}],
+        }),
+        defineArrayMember({
+          name: 'text_2col_ref',
+          title: 'Text 2 Column',
+          type: 'reference',
+          to: [{type: 'text_2col'}],
         }),
         defineArrayMember({
           name: 'client_list_ref',

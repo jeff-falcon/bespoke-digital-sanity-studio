@@ -1,16 +1,17 @@
-import Project from './components/project'
+import ClientList from './components/client_list'
+import ColumnedText from './components/columned_text'
+import Config from './components/config'
+import Form from './components/form'
 import Hero from './components/hero'
+import LogoGrid from './components/logo_grid'
+import MultiHero from './components/multi_hero'
 import Page from './components/page'
+import Project from './components/project'
 import ProjectGrid from './components/project_grid'
 import ProjectMedia from './components/project_media'
-import Config from './components/config'
-import LogoGrid from './components/logo_grid'
-import TextOnly from './components/text_only'
-import ColumnedText from './components/columned_text'
-import ClientList from './components/client_list'
-import Form from './components/form'
-import MultiHero from './components/multi_hero'
 import TeamGrid from './components/team_grid'
+import Text2Columns from './components/text_2col'
+import TextOnly from './components/text_only'
 
 export const schemaTypes = [
   Config,
@@ -25,5 +26,6 @@ export const schemaTypes = [
   ProjectGrid,
   ProjectMedia,
   TextOnly,
+  Text2Columns,
   TeamGrid,
 ]
