@@ -9,13 +9,12 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'byline',
-      kind: 'kind',
+      subtitle: 'quote',
     },
-    prepare({title, subtitle, kind}: any) {
+    prepare({title, subtitle}: any) {
       return {
         title,
-        subtitle: subtitle ? `${subtitle} | ${kind}` : kind,
+        subtitle,
       }
     },
   },
