@@ -1,6 +1,7 @@
 import ClientList from './components/client_list'
 import ColumnedText from './components/columned_text'
 import Config from './components/config'
+import FeatureCarousel from './components/feature_carousel'
 import Form from './components/form'
 import Hero from './components/hero'
 import LogoGrid from './components/logo_grid'
@@ -19,6 +20,7 @@ export const schemaTypes = [
   Page,
   ClientList,
   ColumnedText,
+  FeatureCarousel,
   Form,
   LogoGrid,
   Hero,

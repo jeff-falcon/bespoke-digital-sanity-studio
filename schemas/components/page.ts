@@ -105,6 +105,12 @@ export default defineType({
           type: 'reference',
           to: [{type: 'quote'}],
         }),
+        defineArrayMember({
+          name: 'feature_carousel_ref',
+          title: 'Feature Carousel',
+          type: 'reference',
+          to: [{type: 'feature_carousel'}],
+        }),
       ],
     }),
     /* defineField({
