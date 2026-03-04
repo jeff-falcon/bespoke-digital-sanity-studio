@@ -42,19 +42,19 @@ export default defineConfig({
   theme,
   document: {
     productionUrl: async (prev, context) => {
-      const domain = isDev ? 'http://localhost:5552' : 'https://bespoke-digital-website.vercel.app'
+      const domain = isDev ? 'http://localhost:5552' : 'https://bespokedigital.com'
       const {getClient, document} = context
       const client = getClient({apiVersion: '2023-05-31'})
       if (document._type === 'page') {
         const slug = await client.fetch(`*[_type == 'page' && _id == $postId][0].slug.current`, {
           postId: document._id,
         })
-        return `${domain}/${slug}`
+        return `${domain}/${slug}?enable-previews=1`
       } else if (document._type === 'project') {
         const slug = await client.fetch(`*[_type == 'project' && _id == $postId][0].slug.current`, {
           postId: document._id,
         })
-        return `${domain}/work/${slug}/`
+        return `${domain}/work/${slug}/?enable-previews=1`
       }
       return prev
     },
