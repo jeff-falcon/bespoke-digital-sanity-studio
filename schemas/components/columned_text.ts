@@ -1,5 +1,5 @@
-import { SplitVerticalIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import {SplitVerticalIcon} from '@sanity/icons'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'columned_text',
@@ -10,7 +10,7 @@ export default defineType({
     select: {
       title: 'name',
       subtitle: 'title',
-    }
+    },
   },
   fields: [
     defineField({
@@ -27,13 +27,19 @@ export default defineType({
       name: 'bordered_title',
       type: 'boolean',
       title: 'Border under title',
-      hidden: ({ parent }) => parent.title == '',
+      hidden: ({parent}) => parent.title == '',
+    }),
+    defineField({
+      name: 'indented',
+      type: 'boolean',
+      title: 'Indented on desktop',
+      initialValue: false,
     }),
     defineField({
       name: 'body',
       type: 'array',
       title: 'Body',
-      validation: Rule => Rule.required().min(2).max(4),
+      validation: (Rule) => Rule.required().min(2).max(4),
       of: [
         defineArrayMember({
           type: 'object',
@@ -52,22 +58,22 @@ export default defineType({
               of: [
                 defineArrayMember({
                   type: 'block',
-                  styles: [{ title: 'Normal', value: 'normal' }],
+                  styles: [{title: 'Normal', value: 'normal'}],
                   marks: {
                     decorators: [
-                      { title: 'Strong', value: 'strong' },
-                      { title: 'Emphasis', value: 'em' },
-                      { title: 'Code', value: 'code' },
+                      {title: 'Strong', value: 'strong'},
+                      {title: 'Emphasis', value: 'em'},
+                      {title: 'Code', value: 'code'},
                     ],
                   },
                   lists: [
-                    { title: 'Bullet', value: 'bullet' },
-                    { title: 'Numbered', value: 'number' }
-                  ] // yes please, both bullet and numbered
-                })
+                    {title: 'Bullet', value: 'bullet'},
+                    {title: 'Numbered', value: 'number'},
+                  ], // yes please, both bullet and numbered
+                }),
               ],
             }),
-          ]
+          ],
         }),
       ],
     }),
@@ -78,13 +84,13 @@ export default defineType({
       initialValue: 'transparent',
       options: {
         list: [
-          { title: 'Transparent', value: 'transparent' },
-          { title: 'Dark', value: 'dark' },
-          { title: 'Darker', value: 'darker' },
+          {title: 'Transparent', value: 'transparent'},
+          {title: 'Dark', value: 'dark'},
+          {title: 'Darker', value: 'darker'},
         ],
         layout: 'radio',
         direction: 'horizontal',
-      }
+      },
     }),
-  ]
+  ],
 })
