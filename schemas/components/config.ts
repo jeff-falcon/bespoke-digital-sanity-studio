@@ -1,7 +1,7 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
-import timezones, {TimeZone} from 'timezones-list'
 import {CogIcon, EarthGlobeIcon} from '@sanity/icons'
 import React from 'react'
+import {defineArrayMember, defineField, defineType} from 'sanity'
+import timezones, {TimeZone} from 'timezones-list'
 
 const timezoneOptions = timezones.map((tz: TimeZone) => {
   return {title: tz.label, value: tz.tzCode}
@@ -130,6 +130,47 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'solutions',
+      type: 'object',
+      title: 'Solutions',
+      description: 'Appears above newsletter form in footers',
+      fields: [
+        defineField({
+          name: 'title',
+          type: 'string',
+          title: 'Title',
+          initialValue: 'Our Solutions',
+        }),
+        defineField({
+          name: 'body',
+          type: 'array',
+          title: 'Body',
+          of: [
+            defineArrayMember({
+              type: 'block',
+              styles: [{title: 'Normal', value: 'normal'}],
+              marks: {
+                decorators: [
+                  {title: 'Strong', value: 'strong'},
+                  {title: 'Emphasis', value: 'em'},
+                  {title: 'Code', value: 'code'},
+                ],
+              },
+              lists: [{title: 'Bullet', value: 'bullet'}], // yes please, both bullet and numbered
+            }),
+          ],
+        }),
+      ],
+    }),
+
+    defineField({
+      name: 'newsletter_form_title',
+      type: 'string',
+      title: 'Newsletter form title',
+      initialValue: 'Subscribe to our newsletter',
+    }),
+
     defineField({
       name: 'border_radius',
       type: 'number',
