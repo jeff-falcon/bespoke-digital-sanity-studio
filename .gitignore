@@ -29,3 +29,5 @@
 *.local
 
 .env
+.vercel
+.env*
