@@ -1,5 +1,7 @@
-import {TiersIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {TiersIcon} from '@sanity/icons';
+import React from 'react';
+import {defineArrayMember, defineField, defineType} from 'sanity';
+import {makeCloudinaryThumb} from '../../lib/util';
 
 export default defineType({
   name: 'feature_carousel',
@@ -27,6 +29,19 @@ export default defineType({
           type: 'object',
           name: 'slide',
           title: 'Slide',
+          preview: {
+            select: {
+              title: 'title',
+              image: 'media.image',
+            },
+            prepare({title, image}: any) {
+              // get image from media reference
+              return {
+                title,
+                media: image ? React.createElement('img', {src: makeCloudinaryThumb(image.secure_url)}) : undefined,
+              };
+            },
+          },
           fields: [
             defineField({
               name: 'title',
@@ -34,9 +49,10 @@ export default defineType({
               title: 'Title',
             }),
             defineField({
-              name: 'image',
-              type: 'cloudinary.asset',
-              title: 'Image',
+              name: 'media',
+              weak: true,
+              type: 'reference',
+              to: [{type: 'project_media'}],
             }),
             defineField({
               name: 'body',
@@ -113,4 +129,4 @@ export default defineType({
       },
     }),
   ],
-})
+});
