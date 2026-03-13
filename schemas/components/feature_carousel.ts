@@ -1,7 +1,7 @@
-import {TiersIcon} from '@sanity/icons';
+import { TiersIcon } from '@sanity/icons';
 import React from 'react';
-import {defineArrayMember, defineField, defineType} from 'sanity';
-import {makeCloudinaryThumb} from '../../lib/util';
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { makeCloudinaryThumb } from '../../lib/util';
 
 export default defineType({
   name: 'feature_carousel',
@@ -20,6 +20,31 @@ export default defineType({
       title: 'Name',
     }),
     defineField({
+      name: 'title',
+      type: 'string',
+      title: 'Title',
+      description: 'optional title to show above the carousel',
+    }),
+    defineField({
+      name: 'description',
+      type: 'array',
+      title: 'Description',
+      description: 'optional description to show above the carousel',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Code', value: 'code' },
+            ],
+          },
+        }),
+      ],
+    }),
+    defineField({
       name: 'slides',
       type: 'array',
       title: 'Slides',
@@ -34,11 +59,11 @@ export default defineType({
               title: 'title',
               image: 'media.image',
             },
-            prepare({title, image}: any) {
+            prepare({ title, image }: any) {
               // get image from media reference
               return {
                 title,
-                media: image ? React.createElement('img', {src: makeCloudinaryThumb(image.secure_url)}) : undefined,
+                media: image ? React.createElement('img', { src: makeCloudinaryThumb(image.secure_url) }) : undefined,
               };
             },
           },
@@ -52,7 +77,7 @@ export default defineType({
               name: 'media',
               weak: true,
               type: 'reference',
-              to: [{type: 'project_media'}],
+              to: [{ type: 'project_media' }],
             }),
             defineField({
               name: 'body',
@@ -61,12 +86,12 @@ export default defineType({
               of: [
                 defineArrayMember({
                   type: 'block',
-                  styles: [{title: 'Normal', value: 'normal'}],
+                  styles: [{ title: 'Normal', value: 'normal' }],
                   marks: {
                     decorators: [
-                      {title: 'Strong', value: 'strong'},
-                      {title: 'Emphasis', value: 'em'},
-                      {title: 'Code', value: 'code'},
+                      { title: 'Strong', value: 'strong' },
+                      { title: 'Emphasis', value: 'em' },
+                      { title: 'Code', value: 'code' },
                     ],
                   },
                 }),
@@ -80,12 +105,12 @@ export default defineType({
               of: [
                 defineArrayMember({
                   type: 'block',
-                  styles: [{title: 'Normal', value: 'normal'}],
+                  styles: [{ title: 'Normal', value: 'normal' }],
                   marks: {
                     decorators: [
-                      {title: 'Strong', value: 'strong'},
-                      {title: 'Emphasis', value: 'em'},
-                      {title: 'Code', value: 'code'},
+                      { title: 'Strong', value: 'strong' },
+                      { title: 'Emphasis', value: 'em' },
+                      { title: 'Code', value: 'code' },
                     ],
                   },
                 }),
@@ -101,13 +126,13 @@ export default defineType({
               name: 'button_title',
               type: 'string',
               title: 'Button title',
-              hidden: ({parent}) => !parent?.has_button,
+              hidden: ({ parent }) => !parent?.has_button,
             }),
             defineField({
               name: 'button_url',
               type: 'string',
               title: 'Button URL',
-              hidden: ({parent}) => !parent?.has_button,
+              hidden: ({ parent }) => !parent?.has_button,
             }),
           ],
         }),
@@ -120,9 +145,9 @@ export default defineType({
       initialValue: 'transparent',
       options: {
         list: [
-          {title: 'Transparent', value: 'transparent'},
-          {title: 'Dark', value: 'dark'},
-          {title: 'Darker', value: 'darker'},
+          { title: 'Transparent', value: 'transparent' },
+          { title: 'Dark', value: 'dark' },
+          { title: 'Darker', value: 'darker' },
         ],
         layout: 'radio',
         direction: 'horizontal',
