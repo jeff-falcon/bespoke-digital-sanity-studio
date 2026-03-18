@@ -1,5 +1,7 @@
 import { ThLargeIcon } from '@sanity/icons';
+import React from 'react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
+import { makeCloudinaryThumb } from '../../lib/util';
 import { LayoutRadioInput } from '../../tools/LayoutButtons';
 
 const layoutMediaCount: Record<string, number> = {
@@ -26,12 +28,14 @@ export default defineType({
     select: {
       title: 'name',
       subtitle: 'title',
+      imageUrl: 'media.0.image.secure_url',
     },
     prepare(value, viewOptions) {
-      const { title, subtitle } = value as { title: string; subtitle: string };
+      const { title, subtitle, imageUrl } = value as { title: string; subtitle: string; imageUrl: string };
       return {
         title,
         subtitle: subtitle ? `Section title: ${subtitle}` : '',
+        media: imageUrl ? React.createElement('img', { src: makeCloudinaryThumb(imageUrl) }) : undefined,
       };
     },
   },

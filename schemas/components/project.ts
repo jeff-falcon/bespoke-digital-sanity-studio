@@ -1,12 +1,12 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
-import {makeCloudinaryThumb} from '../../lib/util'
-import {PresentationIcon} from '@sanity/icons'
-import {schemeFilter} from 'sanity-plugin-taxonomy-manager'
-import React from 'react'
+import { PresentationIcon } from '@sanity/icons';
+import React from 'react';
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { schemeFilter } from 'sanity-plugin-taxonomy-manager';
+import { makeCloudinaryThumb } from '../../lib/util';
 
 interface FieldParams {
-  parent: any
-  value: any
+  parent: any;
+  value: any;
 }
 
 export default defineType({
@@ -21,12 +21,12 @@ export default defineType({
       kind: 'kind',
       imageUrl: 'image.secure_url',
     },
-    prepare({title, subtitle, imageUrl}: any) {
+    prepare({ title, subtitle, imageUrl }: any) {
       return {
         title,
         subtitle,
-        media: React.createElement('img', {src: makeCloudinaryThumb(imageUrl)}),
-      }
+        media: React.createElement('img', { src: makeCloudinaryThumb(imageUrl) }),
+      };
     },
   },
   fields: [
@@ -73,9 +73,9 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'reference',
-          to: {type: 'skosConcept'},
+          to: { type: 'skosConcept' },
           options: {
-            filter: () => schemeFilter({schemeId: '36f4b9'}),
+            filter: () => schemeFilter({ schemeId: '36f4b9' }),
             disableNew: true,
           },
         }),
@@ -111,8 +111,8 @@ export default defineType({
       initialValue: 'image',
       options: {
         list: [
-          {title: 'Image', value: 'image'},
-          {title: 'Video BG', value: 'video-bg'},
+          { title: 'Image', value: 'image' },
+          { title: 'Video BG', value: 'video-bg' },
         ],
         layout: 'radio',
         direction: 'horizontal',
@@ -123,30 +123,29 @@ export default defineType({
       type: 'string',
       title: 'Thumbnail video: 720p Vimeo MP4 URL',
       description: 'Use a 720p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({parent, value}: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent, value }: FieldParams) => parent.kind !== 'video-bg',
     }),
     defineField({
       name: 'thumb_vimeo_src_hd',
       type: 'string',
       title: 'Thumbnail video: 1080p Vimeo MP4 URL',
       description: 'Use a 1080p MP4 file from Vimeo’s "Video file links"',
-      hidden: ({parent, value}: FieldParams) => parent.kind !== 'video-bg',
+      hidden: ({ parent, value }: FieldParams) => parent.kind !== 'video-bg',
     }),
     defineField({
       name: 'description_intro',
       type: 'array',
       title: 'Intro Description',
-      description:
-        'The first block of copy on the project page. Keep it as one paragraph and 1-2 sentences.',
+      description: 'The first block of copy on the project page. Keep it as one paragraph and 1-2 sentences.',
       of: [
         defineArrayMember({
           type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          styles: [{ title: 'Normal', value: 'normal' }],
           lists: [],
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
             ],
           },
         }),
@@ -160,12 +159,12 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          styles: [{ title: 'Normal', value: 'normal' }],
           lists: [],
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
             ],
           },
         }),
@@ -187,8 +186,8 @@ export default defineType({
             },
           },
           fields: [
-            {name: 'name', type: 'string', title: 'Title'},
-            {name: 'credit', type: 'string', title: 'Credit'},
+            { name: 'name', type: 'string', title: 'Title' },
+            { name: 'credit', type: 'string', title: 'Credit' },
           ],
         }),
       ],
@@ -203,7 +202,7 @@ export default defineType({
           type: 'reference',
           title: 'Single Item',
           weak: true,
-          to: [{type: 'project_media'}],
+          to: [{ type: 'project_media' }],
         }),
         defineArrayMember({
           name: 'item_pair',
@@ -215,12 +214,12 @@ export default defineType({
               titleRight: 'right.name',
               imageUrl: 'left.image.secure_url',
             },
-            prepare({titleLeft, titleRight, imageUrl}: any) {
+            prepare({ titleLeft, titleRight, imageUrl }: any) {
               return {
                 title: `${titleLeft} + ${titleRight}`,
                 subtitle: 'Image Pair',
-                media: React.createElement('img', {src: makeCloudinaryThumb(imageUrl)}),
-              }
+                media: React.createElement('img', { src: makeCloudinaryThumb(imageUrl) }),
+              };
             },
           },
           fields: [
@@ -238,7 +237,7 @@ export default defineType({
               name: 'right',
               weak: true,
               type: 'reference',
-              to: [{type: 'project_media'}],
+              to: [{ type: 'project_media' }],
             }),
           ],
         }),
@@ -247,7 +246,14 @@ export default defineType({
           type: 'reference',
           title: 'Text Block',
           weak: true,
-          to: [{type: 'text_only'}],
+          to: [{ type: 'text_only' }],
+        }),
+        defineArrayMember({
+          name: 'media_group_item',
+          type: 'reference',
+          title: 'Media Group',
+          weak: true,
+          to: [{ type: 'media_group' }],
         }),
       ],
     }),
@@ -258,12 +264,12 @@ export default defineType({
       options: {
         enableAlpha: false,
         colorList: [
-          {label: 'Dark Gray', value: '#262626'},
-          {label: 'Rust', value: '#6d3434'},
-          {label: 'Olive', value: '#3f4239'},
-          {label: 'Cream', value: '#EFF4E3'},
-          {label: 'Light Goldenrod', value: '#E9F1CF'},
-          {label: 'Custom...', value: 'custom'},
+          { label: 'Dark Gray', value: '#262626' },
+          { label: 'Rust', value: '#6d3434' },
+          { label: 'Olive', value: '#3f4239' },
+          { label: 'Cream', value: '#EFF4E3' },
+          { label: 'Light Goldenrod', value: '#E9F1CF' },
+          { label: 'Custom...', value: 'custom' },
         ],
       },
     }),
@@ -282,14 +288,14 @@ export default defineType({
       options: {
         enableAlpha: true,
         colorList: [
-          {label: 'Dark Gray', value: '#262626'},
-          {label: 'Rust', value: '#6d3434'},
-          {label: 'Olive', value: '#3f4239'},
-          {label: 'Cream', value: '#EFF4E3'},
-          {label: 'Light Goldenrod', value: '#E9F1CF'},
-          {label: 'Custom...', value: 'custom'},
+          { label: 'Dark Gray', value: '#262626' },
+          { label: 'Rust', value: '#6d3434' },
+          { label: 'Olive', value: '#3f4239' },
+          { label: 'Cream', value: '#EFF4E3' },
+          { label: 'Light Goldenrod', value: '#E9F1CF' },
+          { label: 'Custom...', value: 'custom' },
         ],
       },
     }),
   ],
-})
+});
