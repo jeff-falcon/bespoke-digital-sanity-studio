@@ -65,6 +65,17 @@ function Button_3_Across({ checked = false }: ButtonProps) {
   );
 }
 
+function Button_2_Across({ checked = false }: ButtonProps) {
+  return (
+    <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke={checked ? 'red' : 'black'} fill={checked ? 'rgb(255 0 0 / 0.5)' : 'none'}>
+        <rect x="0.5" y="0.5" width="20" height="31" rx="1.5" />
+        <rect x="27.5" y="0.5" width="20" height="31" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
 function Button_4_Across({ checked = false }: ButtonProps) {
   return (
     <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -149,6 +160,7 @@ const layoutOptions: { value: string; icon: (props: ButtonProps) => ReactElement
   { value: 'two_one', icon: Button_1_2 },
   { value: 'one_three', icon: Button_1_3 },
   { value: 'three_one', icon: Button_3_1 },
+  { value: 'two', icon: Button_2_Across },
   { value: 'three', icon: Button_3_Across },
   { value: 'four', icon: Button_4_Across },
   { value: 'one_half_half', icon: Button_1_Half_Half },
@@ -168,24 +180,22 @@ export function LayoutRadioInput(props: StringInputProps) {
     [onChange],
   );
 
-  return (
-    <>
-      <style>{`
-      @media (prefers-color-scheme: dark) {
-        .layout-btn-wrapper svg g[stroke="black"] { stroke: white; }
-        .layout-btn-wrapper svg path[fill="black"] { fill: white; }
-      }
-    `}</style>
+  function renderOptionRow(options: typeof layoutOptions) {
+    return (
       <div
-        className="layout-btn-wrapper"
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '8px',
+          gap: '12px',
           alignItems: 'center',
+          padding: '16px 8px',
+          width: '100%',
+          justifyContent: 'center',
+          border: '1px solid var(--card-border-color)',
+          borderRadius: '0.1875rem',
         }}
       >
-        {layoutOptions.map(({ value: optionValue, icon: Icon }) => {
+        {options.map(({ value: optionValue, icon: Icon }) => {
           const inputId = `${id}-${optionValue}`;
           const isChecked = value === optionValue;
           return (
@@ -196,9 +206,6 @@ export function LayoutRadioInput(props: StringInputProps) {
                   display: 'flex',
                   alignItems: 'center',
                   cursor: 'pointer',
-                  padding: '4px',
-                  border: `1px solid ${isChecked ? 'red' : 'transparent'}`,
-                  borderRadius: '3px',
                 }}
               >
                 <input
@@ -215,6 +222,27 @@ export function LayoutRadioInput(props: StringInputProps) {
             </div>
           );
         })}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <style>{`
+      @media (prefers-color-scheme: dark) {
+        .layout-btn-wrapper svg g[stroke="black"] { stroke: white; }
+        .layout-btn-wrapper svg path[fill="black"] { fill: white; }
+      }
+    `}</style>
+      <div
+        className="layout-btn-wrapper"
+        style={{
+          display: 'grid',
+          gap: '6px',
+          justifyContent: 'start',
+        }}
+      >
+        {renderOptionRow(layoutOptions)}
       </div>
     </>
   );
