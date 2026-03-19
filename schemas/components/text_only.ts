@@ -1,5 +1,5 @@
-import { BillIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { BillIcon } from '@sanity/icons';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'text_only',
@@ -9,7 +9,7 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-    }
+    },
   },
   fields: [
     defineField({
@@ -35,7 +35,10 @@ export default defineType({
             { title: 'Heading 4', value: 'h4' },
             { title: 'Normal', value: 'normal' },
           ],
-          lists: [],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
           marks: {
             decorators: [
               { title: 'Strong', value: 'strong' },
@@ -59,7 +62,7 @@ export default defineType({
         ],
         layout: 'radio',
         direction: 'horizontal',
-      }
+      },
     }),
-  ]
-})
+  ],
+});
