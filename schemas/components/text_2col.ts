@@ -1,5 +1,6 @@
-import {InlineIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { InlineIcon } from '@sanity/icons';
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { ParagraphLarge, PreHeader } from '../../tools/Components';
 
 export default defineType({
   name: 'text_2col',
@@ -24,13 +25,23 @@ export default defineType({
       of: [
         defineArrayMember({
           type: 'block',
-          styles: [{title: 'Heading 1', value: 'h1'}],
-          lists: [],
+          styles: [
+            { title: 'Heading 1', value: 'h1' },
+            { title: 'Heading 2', value: 'h2' },
+            { title: 'Heading 3', value: 'h3' },
+            { title: 'Heading 5', value: 'h5', component: PreHeader },
+            { title: 'Normal', value: 'normal' },
+            { title: 'Paragraph Large', value: 'p', component: ParagraphLarge },
+          ],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-              {title: 'Underline', value: 'underline'},
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Underline', value: 'underline' },
             ],
           },
         }),
@@ -44,19 +55,29 @@ export default defineType({
         defineArrayMember({
           type: 'block',
           styles: [
-            {title: 'Heading 4', value: 'h4'},
-            {title: 'Normal', value: 'normal'},
+            { title: 'Heading 4', value: 'h4' },
+            { title: 'Normal', value: 'normal' },
+            { title: 'Paragraph Large', value: 'p', component: ParagraphLarge },
           ],
-          lists: [],
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-              {title: 'Underline', value: 'underline'},
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Underline', value: 'underline' },
             ],
           },
         }),
       ],
+    }),
+    defineField({
+      name: 'indented',
+      type: 'boolean',
+      title: 'Indented on desktop',
+      initialValue: true,
     }),
     defineField({
       name: 'background_color',
@@ -65,13 +86,13 @@ export default defineType({
       initialValue: 'transparent',
       options: {
         list: [
-          {title: 'Transparent', value: 'transparent'},
-          {title: 'Dark', value: 'dark'},
-          {title: 'Darker', value: 'darker'},
+          { title: 'Transparent', value: 'transparent' },
+          { title: 'Dark', value: 'dark' },
+          { title: 'Darker', value: 'darker' },
         ],
         layout: 'radio',
         direction: 'horizontal',
       },
     }),
   ],
-})
+});
