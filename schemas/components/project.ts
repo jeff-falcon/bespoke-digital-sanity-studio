@@ -255,6 +255,18 @@ export default defineType({
           weak: true,
           to: [{ type: 'media_group' }],
         }),
+        defineArrayMember({
+          name: 'columned_text_ref',
+          title: 'Columned Text',
+          type: 'reference',
+          to: [{ type: 'columned_text' }],
+        }),
+        defineArrayMember({
+          name: 'text_2col_ref',
+          title: 'Text 2 Column',
+          type: 'reference',
+          to: [{ type: 'text_2col' }],
+        }),
       ],
     }),
     defineField({

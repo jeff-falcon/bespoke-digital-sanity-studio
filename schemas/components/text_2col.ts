@@ -11,6 +11,12 @@ export default defineType({
     select: {
       title: 'name',
     },
+    prepare({ title }: any) {
+      return {
+        title,
+        subtitle: 'Text 2 Column',
+      };
+    },
   },
   fields: [
     defineField({
