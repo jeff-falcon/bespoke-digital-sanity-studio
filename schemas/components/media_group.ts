@@ -19,6 +19,21 @@ const layoutMediaCount: Record<string, number> = {
   half_half_one: 3,
 };
 
+const layouts = [
+  { title: '1 + 2', value: 'one_two' },
+  { title: '2 + 1', value: 'two_one' },
+  { title: '3 + 1', value: 'three_one' },
+  { title: '1 + 3', value: 'one_three' },
+  { title: '1 full', value: 'one_full' },
+  { title: 'Two across', value: 'two' },
+  { title: 'Three across', value: 'three' },
+  { title: 'Four across', value: 'four' },
+  { title: '1 + 1/2 + 1/2', value: 'one_half_half' },
+  { title: '1/2 + 1/2 + 1', value: 'half_half_one' },
+  { title: '1 + text', value: 'one_text' },
+  { title: 'text + 1', value: 'text_one' },
+];
+
 // schemas/project.ts
 export default defineType({
   name: 'media_group',
@@ -28,14 +43,14 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'title',
+      subtitle: 'layout',
       imageUrl: 'media.0.image.secure_url',
     },
     prepare(value, viewOptions) {
       const { title, subtitle, imageUrl } = value as { title: string; subtitle: string; imageUrl: string };
       return {
         title,
-        subtitle: subtitle ? `Section title: ${subtitle}` : '',
+        subtitle: `Media Group | Layout: ${layouts.find((item) => item.value === subtitle)?.title ?? subtitle}`,
         media: imageUrl ? React.createElement('img', { src: makeCloudinaryThumb(imageUrl) }) : undefined,
       };
     },
@@ -62,20 +77,7 @@ export default defineType({
       initialValue: 'one_two',
       components: { input: LayoutRadioInput },
       options: {
-        list: [
-          { title: '1 + 2', value: 'one_two' },
-          { title: '2 + 1', value: 'two_one' },
-          { title: '3 + 1', value: 'three_one' },
-          { title: '1 + 3', value: 'one_three' },
-          { title: '1 full', value: 'one_full' },
-          { title: 'Two across', value: 'two' },
-          { title: 'Three across', value: 'three' },
-          { title: 'Four across', value: 'four' },
-          { title: '1 + 1/2 + 1/2', value: 'one_half_half' },
-          { title: '1/2 + 1/2 + 1', value: 'half_half_one' },
-          { title: '1 + text', value: 'one_text' },
-          { title: 'text + 1', value: 'text_one' },
-        ],
+        list: layouts,
       },
     }),
     defineField({
@@ -141,6 +143,14 @@ export default defineType({
           to: [{ type: 'project_media' }],
         }),
       ],
+    }),
+    defineField({
+      name: 'collapse_margin',
+      type: 'boolean',
+      title: 'Collapse margin to next Media Group',
+      description:
+        'When multiple Media Group modules are stacked on a page, the gap between this one and the next can be collapsed to create a nice evenly spaced grid',
+      initialValue: true,
     }),
   ],
 });
