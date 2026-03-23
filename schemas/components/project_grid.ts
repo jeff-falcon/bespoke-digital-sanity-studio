@@ -1,5 +1,5 @@
-import {ThLargeIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { ThLargeIcon } from '@sanity/icons';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 // schemas/project.ts
 export default defineType({
@@ -13,11 +13,11 @@ export default defineType({
       subtitle: 'title',
     },
     prepare(value, viewOptions) {
-      const {title, subtitle} = value as {title: string; subtitle: string}
+      const { title, subtitle } = value as { title: string; subtitle: string };
       return {
         title,
         subtitle: subtitle ? `Section title: ${subtitle}` : '',
-      }
+      };
     },
   },
   fields: [
@@ -46,6 +46,20 @@ export default defineType({
         'If checked, all projects will be featured larger. The "Feature first project" setting will be ignored.',
     }),
     defineField({
+      name: 'columns',
+      type: 'string',
+      options: {
+        list: [
+          { title: '2 across', value: 'two' },
+          { title: '3 across', value: 'three' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      description: 'Setting only applies to desktop',
+      initialValue: 'two',
+    }),
+    defineField({
       name: 'more_link',
       type: 'object',
       title: 'More link',
@@ -71,9 +85,9 @@ export default defineType({
           name: 'project',
           title: 'Project',
           type: 'reference',
-          to: [{type: 'project'}],
+          to: [{ type: 'project' }],
         }),
       ],
     }),
   ],
-})
+});
