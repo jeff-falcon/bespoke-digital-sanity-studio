@@ -1,12 +1,12 @@
-import {CogIcon, EarthGlobeIcon} from '@sanity/icons'
-import React from 'react'
-import {defineArrayMember, defineField, defineType} from 'sanity'
-import timezones, {TimeZone} from 'timezones-list'
+import { CogIcon, EarthGlobeIcon } from '@sanity/icons';
+import React from 'react';
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import timezones, { TimeZone } from 'timezones-list';
 
 const timezoneOptions = timezones.map((tz: TimeZone) => {
-  return {title: tz.label, value: tz.tzCode}
-})
-timezoneOptions.sort((a, b) => a.title.localeCompare(b.title))
+  return { title: tz.label, value: tz.tzCode };
+});
+timezoneOptions.sort((a, b) => a.title.localeCompare(b.title));
 
 // schemas/config.ts
 export default defineType({
@@ -24,7 +24,63 @@ export default defineType({
       name: 'main_menu',
       type: 'array',
       title: 'Main Menu',
-      of: [{type: 'reference', to: [{type: 'page'}]}],
+      of: [
+        defineArrayMember({
+          name: 'menu_item',
+          type: 'object',
+          title: 'Menu Item',
+          fields: [
+            defineField({
+              name: 'title',
+              type: 'string',
+              title: 'Title',
+            }),
+            defineField({
+              name: 'page',
+              type: 'reference',
+              title: 'Page',
+              to: [{ type: 'page' }],
+            }),
+            defineField({
+              name: 'children',
+              type: 'array',
+              title: 'Sub Items',
+              of: [
+                defineArrayMember({
+                  name: 'sub_menu_item',
+                  type: 'object',
+                  title: 'Sub Menu Item',
+                  fields: [
+                    defineField({
+                      name: 'title',
+                      type: 'string',
+                      title: 'Title',
+                    }),
+                    defineField({
+                      name: 'page',
+                      type: 'reference',
+                      title: 'Page',
+                      to: [{ type: 'page' }],
+                    }),
+                  ],
+                  preview: {
+                    select: {
+                      title: 'title',
+                      subtitle: 'page.name',
+                    },
+                  },
+                }),
+              ],
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'page.name',
+            },
+          },
+        }),
+      ],
     }),
     defineField({
       name: 'socials_group',
@@ -52,16 +108,16 @@ export default defineType({
                   subtitle: 'url',
                   imageUrl: 'icon.asset.url',
                 },
-                prepare({title, subtitle, imageUrl}: any) {
+                prepare({ title, subtitle, imageUrl }: any) {
                   const img = React.createElement('img', {
                     src: imageUrl,
-                    style: {backgroundColor: 'black'},
-                  })
+                    style: { backgroundColor: 'black' },
+                  });
                   return {
                     title,
                     subtitle,
                     media: img,
-                  }
+                  };
                 },
               },
               fields: [
@@ -149,15 +205,15 @@ export default defineType({
           of: [
             defineArrayMember({
               type: 'block',
-              styles: [{title: 'Normal', value: 'normal'}],
+              styles: [{ title: 'Normal', value: 'normal' }],
               marks: {
                 decorators: [
-                  {title: 'Strong', value: 'strong'},
-                  {title: 'Emphasis', value: 'em'},
-                  {title: 'Code', value: 'code'},
+                  { title: 'Strong', value: 'strong' },
+                  { title: 'Emphasis', value: 'em' },
+                  { title: 'Code', value: 'code' },
                 ],
               },
-              lists: [{title: 'Bullet', value: 'bullet'}], // yes please, both bullet and numbered
+              lists: [{ title: 'Bullet', value: 'bullet' }], // yes please, both bullet and numbered
             }),
           ],
         }),
@@ -180,4 +236,4 @@ export default defineType({
       validation: (Rule) => Rule.positive().integer().min(0).max(24),
     }),
   ],
-})
+});
