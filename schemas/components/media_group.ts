@@ -2,6 +2,7 @@ import { ThLargeIcon } from '@sanity/icons';
 import React from 'react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { makeCloudinaryThumb } from '../../lib/util';
+import { BulletsWarning } from '../../tools/Components';
 import { LayoutRadioInput } from '../../tools/LayoutButtons';
 
 const layoutMediaCount: Record<string, number> = {
@@ -90,6 +91,22 @@ export default defineType({
         layout: 'radio',
         direction: 'horizontal',
       },
+    }),
+    defineField({
+      name: 'bullet_warning',
+      type: 'string',
+      title: 'Warning',
+      readOnly: true,
+      fieldset: 'intro',
+      components: { field: BulletsWarning },
+      hidden: ({ parent }) => parent.text_align === 'left',
+    }),
+    defineField({
+      name: 'use_stylized_list',
+      title: 'Use stylized bullets',
+      type: 'boolean',
+      initialValue: false,
+      fieldset: 'intro',
     }),
     defineField({
       name: 'layout',
