@@ -2,7 +2,6 @@ import { ThLargeIcon } from '@sanity/icons';
 import React from 'react';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { makeCloudinaryThumb } from '../../lib/util';
-import { BulletsWarning } from '../../tools/Components';
 import { LayoutRadioInput } from '../../tools/LayoutButtons';
 
 const layoutMediaCount: Record<string, number> = {
@@ -41,72 +40,19 @@ export default defineType({
       };
     },
   },
-  fieldsets: [{ name: 'intro', title: 'Intro title & description', options: { collapsible: true, collapsed: false } }],
+  fieldsets: [
+    {
+      hidden: ({ value }) => !(value.layout === 'one_text' || value.layout === 'text_one'),
+      name: 'text-block',
+      title: 'Text',
+      options: { collapsible: false, collapsed: false },
+    },
+  ],
   fields: [
     defineField({
       name: 'name',
       type: 'string',
       title: 'Name',
-    }),
-    defineField({
-      name: 'title',
-      type: 'string',
-      title: 'Title',
-      description: 'optional',
-      fieldset: 'intro',
-    }),
-    defineField({
-      name: 'description',
-      type: 'array',
-      title: 'Description',
-      description: 'optional',
-      fieldset: 'intro',
-      of: [
-        defineArrayMember({
-          type: 'block',
-          styles: [{ title: 'Normal', value: 'normal' }],
-          marks: {
-            decorators: [
-              { title: 'Strong', value: 'strong' },
-              { title: 'Emphasis', value: 'em' },
-              { title: 'Code', value: 'code' },
-            ],
-          },
-        }),
-      ],
-    }),
-    defineField({
-      name: 'text_align',
-      type: 'string',
-      title: 'Text alignment',
-      hidden: ({ parent }) => parent.title == '' && parent.description == '',
-      initialValue: 'centered',
-      fieldset: 'intro',
-      options: {
-        list: [
-          { title: 'Centered', value: 'centered' },
-          { title: 'Left', value: 'left' },
-          { title: 'Right', value: 'right' },
-        ],
-        layout: 'radio',
-        direction: 'horizontal',
-      },
-    }),
-    defineField({
-      name: 'bullet_warning',
-      type: 'string',
-      title: 'Warning',
-      readOnly: true,
-      fieldset: 'intro',
-      components: { field: BulletsWarning },
-      hidden: ({ parent }) => parent.text_align === 'left',
-    }),
-    defineField({
-      name: 'use_stylized_list',
-      title: 'Use stylized bullets',
-      type: 'boolean',
-      initialValue: false,
-      fieldset: 'intro',
     }),
     defineField({
       name: 'layout',
@@ -130,6 +76,46 @@ export default defineType({
           { title: '1 + text', value: 'one_text' },
           { title: 'text + 1', value: 'text_one' },
         ],
+      },
+    }),
+    defineField({
+      name: 'description',
+      type: 'array',
+      title: 'Content',
+      fieldset: 'text-block',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [
+            { title: 'Heading 1', value: 'h1' },
+            { title: 'Heading 2', value: 'h2' },
+            { title: 'Heading 3', value: 'h3' },
+            { title: 'Normal', value: 'normal' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Code', value: 'code' },
+            ],
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'text_align',
+      type: 'string',
+      title: 'Alignment',
+      hidden: ({ parent }) => parent.title == '' && parent.description == '',
+      initialValue: 'centered',
+      fieldset: 'text-block',
+      options: {
+        list: [
+          { title: 'Left', value: 'left' },
+          { title: 'Centered', value: 'centered' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
       },
     }),
     defineField({
