@@ -80,6 +80,12 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: 'use_stylized_list',
+      title: 'Use stylized bullets',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
       name: 'background_color',
       type: 'string',
       title: 'Background color',
