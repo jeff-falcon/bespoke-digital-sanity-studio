@@ -1,11 +1,11 @@
-import { defineField, defineType } from 'sanity'
-import { makeCloudinaryThumb } from '../../lib/util'
-import { ImageIcon } from '@sanity/icons'
-import React from 'react'
+import { ImageIcon } from '@sanity/icons';
+import React from 'react';
+import { defineField, defineType } from 'sanity';
+import { makeCloudinaryThumb } from '../../lib/util';
 
 interface FieldParams {
-  parent: any
-  value: any
+  parent: any;
+  value: any;
 }
 
 export default defineType({
@@ -24,8 +24,8 @@ export default defineType({
       return {
         title,
         subtitle: kind,
-        media: React.createElement('img', { src: makeCloudinaryThumb(derivedUrl || imageUrl) })
-      }
+        media: React.createElement('img', { src: makeCloudinaryThumb(derivedUrl || imageUrl) }),
+      };
     },
   },
   fields: [
@@ -52,10 +52,19 @@ export default defineType({
           { title: 'Image', value: 'image' },
           { title: 'Video BG', value: 'video-bg' },
           { title: 'Video Player', value: 'video-player' },
+          { title: 'Vimeo Player', value: 'vimeo-player' },
         ],
         layout: 'radio',
         direction: 'horizontal',
       },
+    }),
+    defineField({
+      name: 'vimeo_player_id',
+      type: 'string',
+      title: 'Vimeo Player ID',
+      description:
+        'Embeds a Vimeo player with controls. Include ONLY the ID from the Vimeo URL. For example, for "https://vimeo.com/123456789" just enter "123456789".',
+      hidden: ({ parent }: FieldParams) => parent.kind !== 'vimeo-player',
     }),
     defineField({
       name: 'vimeo_player_src',
@@ -83,7 +92,8 @@ export default defineType({
       name: 'use_original_quality',
       type: 'boolean',
       title: 'Use original quality',
-      description: 'When enabled the image quality on the largest screen will use the settings from Cloudinary or the original file if you didn’t make any edits. Only use this if you have uploaded a compressed JPEG or you know what you are doing in the Cloudinary editor. JPEGs larger than 800KB are not recommended if you have this enabled.',
+      description:
+        'When enabled the image quality on the largest screen will use the settings from Cloudinary or the original file if you didn’t make any edits. Only use this if you have uploaded a compressed JPEG or you know what you are doing in the Cloudinary editor. JPEGs larger than 800KB are not recommended if you have this enabled.',
       initialValue: false,
     }),
     defineField({
@@ -95,4 +105,4 @@ export default defineType({
       hidden: ({ parent }: FieldParams) => parent.kind !== 'video-player',
     }),
   ],
-})
+});
