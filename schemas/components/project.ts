@@ -267,6 +267,12 @@ export default defineType({
           type: 'reference',
           to: [{ type: 'text_2col' }],
         }),
+        defineArrayMember({
+          name: 'quote_ref',
+          title: 'Quote',
+          type: 'reference',
+          to: [{ type: 'quote' }],
+        }),
       ],
     }),
     defineField({
