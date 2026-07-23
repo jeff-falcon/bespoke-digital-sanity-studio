@@ -17,6 +17,12 @@ const layoutMediaCount: Record<string, number> = {
   four: 4,
   one_half_half: 3,
   half_half_one: 3,
+  complex_grid_1: 4,
+  complex_grid_2: 5,
+  complex_grid_3: 4,
+  complex_grid_4: 4,
+  complex_grid_5: 5,
+  complex_grid_6: 4,
 };
 
 const layouts = [
@@ -30,6 +36,12 @@ const layouts = [
   { title: 'Four across', value: 'four' },
   { title: '1 + 1/2 + 1/2', value: 'one_half_half' },
   { title: '1/2 + 1/2 + 1', value: 'half_half_one' },
+  { title: 'Complex grid 1', value: 'complex_grid_1' },
+  { title: 'Complex grid 2', value: 'complex_grid_2' },
+  { title: 'Complex grid 3', value: 'complex_grid_3' },
+  { title: 'Complex grid 4', value: 'complex_grid_4' },
+  { title: 'Complex grid 5', value: 'complex_grid_5' },
+  { title: 'Complex grid 6', value: 'complex_grid_6' },
   { title: '1 + text', value: 'one_text' },
   { title: 'text + 1', value: 'text_one' },
 ];

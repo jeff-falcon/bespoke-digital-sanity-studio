@@ -113,6 +113,86 @@ function Button_Half_Half_1({ checked = false }: ButtonProps) {
   );
 }
 
+function Button_Complex_1({ checked = false }: ButtonProps) {
+  return (
+    <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke={checked ? 'red' : 'black'} fill={checked ? 'rgb(255 0 0 / 0.5)' : 'none'}>
+        <rect x="0.5" y="0.5" width="20" height="31" rx="1.5" />
+        <rect x="27.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="39.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="27.5" y="18.5" width="20" height="13" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
+function Button_Complex_2({ checked = false }: ButtonProps) {
+  return (
+    <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke={checked ? 'red' : 'black'} fill={checked ? 'rgb(255 0 0 / 0.5)' : 'none'}>
+        <rect x="0.5" y="0.5" width="20" height="31" rx="1.5" />
+        <rect x="27.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="39.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="27.5" y="18.5" width="8" height="13" rx="1.5" />
+        <rect x="39.5" y="18.5" width="8" height="13" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
+function Button_Complex_3({ checked = false }: ButtonProps) {
+  return (
+    <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke={checked ? 'red' : 'black'} fill={checked ? 'rgb(255 0 0 / 0.5)' : 'none'}>
+        <rect x="0.5" y="0.5" width="20" height="31" rx="1.5" />
+        <rect x="27.5" y="0.5" width="20" height="13" rx="1.5" />
+        <rect x="27.5" y="18.5" width="8" height="13" rx="1.5" />
+        <rect x="39.5" y="18.5" width="8" height="13" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
+function Button_Complex_4({ checked = false }: ButtonProps) {
+  return (
+    <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke={checked ? 'red' : 'black'} fill={checked ? 'rgb(255 0 0 / 0.5)' : 'none'}>
+        <rect x="0.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="12.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="0.5" y="18.5" width="20" height="13" rx="1.5" />
+        <rect x="27.5" y="0.5" width="20" height="31" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
+function Button_Complex_5({ checked = false }: ButtonProps) {
+  return (
+    <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke={checked ? 'red' : 'black'} fill={checked ? 'rgb(255 0 0 / 0.5)' : 'none'}>
+        <rect x="0.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="12.5" y="0.5" width="8" height="13" rx="1.5" />
+        <rect x="0.5" y="18.5" width="8" height="13" rx="1.5" />
+        <rect x="12.5" y="18.5" width="8" height="13" rx="1.5" />
+        <rect x="27.5" y="0.5" width="20" height="31" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
+function Button_Complex_6({ checked = false }: ButtonProps) {
+  return (
+    <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke={checked ? 'red' : 'black'} fill={checked ? 'rgb(255 0 0 / 0.5)' : 'none'}>
+        <rect x="0.5" y="0.5" width="20" height="13" rx="1.5" />
+        <rect x="0.5" y="18.5" width="8" height="13" rx="1.5" />
+        <rect x="12.5" y="18.5" width="8" height="13" rx="1.5" />
+        <rect x="27.5" y="0.5" width="20" height="31" rx="1.5" />
+      </g>
+    </svg>
+  );
+}
+
 function Button_One_Text({ checked = false }: ButtonProps) {
   return (
     <svg width="36" height="24" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -165,6 +245,12 @@ const layoutOptions: { value: string; icon: (props: ButtonProps) => ReactElement
   { value: 'four', icon: Button_4_Across },
   { value: 'one_half_half', icon: Button_1_Half_Half },
   { value: 'half_half_one', icon: Button_Half_Half_1 },
+  { value: 'complex_grid_1', icon: Button_Complex_1 },
+  { value: 'complex_grid_2', icon: Button_Complex_2 },
+  { value: 'complex_grid_3', icon: Button_Complex_3 },
+  { value: 'complex_grid_4', icon: Button_Complex_4 },
+  { value: 'complex_grid_5', icon: Button_Complex_5 },
+  { value: 'complex_grid_6', icon: Button_Complex_6 },
   { value: 'one_full', icon: Button_Single },
   { value: 'one_text', icon: Button_One_Text },
   { value: 'text_one', icon: Button_Text_One },
